@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="shortcut icon" href="/project_images/favicon.ico" type="image/x-icon" />
+  <title>Portfolio</title>
+  <style>
+    body {
+      font-family: "Edu NSW ACT Foundation", cursive;
+      text-shadow: 1px 1px 1px white;
+    }
+
+    #blinker {
+      color: white;
+      animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    #para {
+      text-shadow: 0px 1px 0px;
+    }
+
+    #btn-back-to-top {
+      position: fixed;
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="scroll-smooth bg-gradient-to-r from-gray-700 via-gray-900 to-black">
+  <!-- navbar section  -->
+
+  <nav>
+    <div
+      class="hidden lg:flex sidenav h-full w-32 lg:mt-1 font-bold fixed justify-evenly flex-col items-center shadow-xl border-b-2 border-gray-100 shadow-emerald-700">
+      <a href="index.html"
+        class="hover:animate-pulse hover:text-white tracking-widest bg-black text-black px-11 py-3 -mb-32 -mt-20">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+          class="bi bi-house-fill text-white mx-auto my-3" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+          <path fill-rule="evenodd"
+            d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+        </svg>
+        <p>Home</p>
+      </a>
+      <a href="#about" class="hover:bg-black hover:text-white tracking-widest text-black px-11 py-3 -mb-32">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+          class="bi bi-person-fill mx-auto text-white" viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+        </svg>
+        <p>About</p>
+      </a>
+      <a href="#edu" class="hover:bg-black hover:text-white tracking-widest text-black px-7 py-3 -mb-32">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+          class="bi bi-bank2 mx-auto mb-2 text-white" viewBox="0 0 16 16">
+          <path
+            d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z" />
+        </svg>
+        <p>Education</p>
+      </a>
+      <a href="skills.html" class="hover:bg-black hover:text-white tracking-widest text-black px-8 py-3 -mb-32">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+          class="bi bi-hand-thumbs-up-fill mx-auto mb-2 animate-bounce text-white" viewBox="0 0 16 16">
+          <path
+            d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
+        </svg>
+        <p>Skills & Projects</p>
+      </a>
+      <a href="#contact" class="hover:bg-black hover:text-white tracking-widest text-black px-9 py-3 mb-32">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+          class="bi bi-chat-text-fill mx-auto mb-2 text-white" viewBox="0 0 16 16">
+          <path
+            d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z" />
+        </svg>
+        <p>Contact</p>
+      </a>
+    </div>
+
+    <div>
+      <ul
+        class="top-0 fixed lg:hidden flex flex-row font-bold border-b-2 border-gray-500 bg-gray-100 justify-around text-black w-full h-20 text-sm sm:text-lg sm:tracking-widest">
+        <li class="hidden sm:flex">
+          <a href="index.html" class="capitalize hover:uppercase tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+              class="bi bi-house-fill mx-auto mt-4 mb-1" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+              <path fill-rule="evenodd"
+                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+            </svg>
+            <p>Home</p>
+          </a>
+        </li>
+        <li>
+          <a href="#about" class="capitalize hover:uppercase tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+              class="bi bi-person-fill mx-auto mt-3 mb-1" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            </svg>
+            <p>About</p>
+          </a>
+        </li>
+        <li>
+          <a href="#edu" class="capitalize hover:uppercase tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+              class="bi bi-bank2 mx-auto mt-4 mb-1" viewBox="0 0 16 16">
+              <path
+                d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z" />
+            </svg>
+            <p>Education</p>
+          </a>
+        </li>
+        <li>
+          <a href="skills.html" class="capitalize hover:uppercase tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+              class="bi bi-hand-thumbs-up-fill mx-auto mt-4 mb-1 animate-bounce" viewBox="0 0 16 16">
+              <path
+                d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
+            </svg>
+            <p>Skills & Projects</p>
+          </a>
+        </li>
+        <li>
+          <a href="#contact" class="capitalize hover:uppercase tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+              class="bi bi-chat-text-fill mx-auto mt-4 mb-1" viewBox="0 0 16 16">
+              <path
+                d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z" />
+            </svg>
+            <p>Contact</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- top section  -->
+
+  <div class="container px-6 mx-auto lg:pl-64 pt-48 md:pb-20">
+    <section class="mb-32 text-white text-center lg:text-left">
+      <div class="block rounded-lg shadow-2xl shadow-black bg-transparent sm:w-9/12 mx-auto">
+        <div class="flex flex-wrap items-center">
+          <div class="block w-7/12 mx-auto lg:flex grow-0 shrink-0 basis-auto lg:w-6/12 xl:w-4/12">
+            <img src="images/myimage.jpg" alt="myimage" class="w-full rounded-full lg:pl-5" />
+          </div>
+          <div class="grow-0 shrink-0 basis-auto w-full lg:w-6/12 xl:w-8/12">
+            <div class="px-6 py-12 md:px-12">
+              <h2 class="text-4xl sm:text-5xl font-bold mb-4 text-sky-200 display-5 tracking-widest">
+                <span class="text-7xl text-sky-500">R</span>itik
+                <span class="text-7xl text-sky-500">S</span>harma
+              </h2>
+              <p class="text-white text-md sm:text-xl font-bold font-serif italic tracking-wide sm:tracking-widest my-7"
+                id="para">
+                ^ FULL STACK SOFTWARE DEVELOPER <br />
+                <span class="text-red-500">^ UI | UX DESIGNER</span> <br />
+                ^ VIDEO CREATOR <br />
+                <span class="text-red-500">^ FREELANCER</span> <br />
+                ^ EDITOR
+              </p>
+              <div class="flex justify-center">
+                <a href="/images/my_resume.pdf" download>
+                  <button
+                    class="inline-flex font-bold border-0 py-2 px-1 sm:px-6 focus:outline-none hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-gradient-to-r from-green-500 hover:from-gray-900 duration-300 rounded text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                      class="bi bi-cloud-arrow-down-fill my-auto mx-2 sm:mr-3" viewBox="0 0 16 16">
+                      <path
+                        d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z" />
+                    </svg>
+                    Resume
+                  </button>
+                </a>
+                <a href="projects.html" target="_blank">
+                  <button
+                    class="ml-4 inline-flex font-bold border-0 py-2 px-6 hover:text-white focus:outline-none transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-gradient-to-r from-yellow-500 hover:from-gray-900 duration-300 rounded text-lg">
+                    Hire Me
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- about section -->
+
+  <div id="about"
+    class="justify-center bg-gradient-to-r from-purple-100 pt-3 items-center w-3/4 rounded-l-full ml-auto flex mt-10 lg:mt-14">
+    <h1 class="sm:text-3xl text-2xl font-bold title-font mb-4 tracking-wider">
+      aBoUt mE
+    </h1>
+  </div>
+
+  <section class="text-white body-font tracking-widest">
+    <div class="container px-5 py-24 mx-auto lg:pl-40">
+      <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block w-8 h-8 text-gray-400 mb-8"
+          viewBox="0 0 975.036 975.036">
+          <path
+            d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z">
+          </path>
+        </svg>
+        <p class="leading-relaxed text-xl">
+          <span class="text-2xl font-serif font-bold">HELLO !</span> <br />
+          "My name is Ritik Sharma, and my portfolio is a representation of
+          all that i've learned and accomplished as a Computer Science and
+          Engineering Student." <br />
+          I'm a Software Engineer by training from the Vidya College of
+          Engineering. On my free time, I enjoy expanding my programming
+          knowledge, building dynamic web/software applications and make
+          youtube videos. Other than programming, I like editing songs(to
+          LoFi), observing, exercising, traveling, and enjoying life. <br />
+          Have a nice day and thanks for visiting my site!
+          <span id="blinker">▮</span>
+        </p>
+        <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- education section  -->
+
+  <div id="edu" class="justify-center bg-gradient-to-l from-purple-100 pt-3 items-center w-3/4 rounded-r-full flex">
+    <h1 class="sm:text-3xl text-2xl font-bold title-font mb-4 tracking-wider">
+      eDuCaTiOn
+    </h1>
+  </div>
+
+  <section class="text-white body-font tracking-widest">
+    <div class="container px-5 py-24 mx-auto lg:pl-40">
+      <div class="flex flex-wrap -m-4 flex-col sm:flex-row mx-auto text-xl">
+        <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+          <div class="h-full text-center">
+            <img alt="testimonial"
+              class="w-32 h-32 mb-8 object-fill object-center rounded-full inline-block border-2 border-white bg-gray-100 shadow-lg shadow-white"
+              src="/images/school-solid.svg" />
+            <p class="leading-relaxed">D.S. Public School</p>
+            <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+            <h2 class="text-white font-medium title-font tracking-wider">
+              High School (2016)
+            </h2>
+            <p class="text-white text-2xl pt-2 font-bold">Secured -> 74.1%</p>
+          </div>
+        </div>
+        <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+          <div class="h-full text-center">
+            <img alt="testimonial"
+              class="w-32 h-32 mb-8 object-fill object-center rounded-full inline-block border-2 border-white bg-gray-100 shadow-lg shadow-white"
+              src="/images/bank.svg" />
+            <p class="leading-relaxed">D.S. Public School</p>
+            <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+            <h2 class="text-white font-medium title-font tracking-wider">
+              Intermediate (2018)
+            </h2>
+            <p class="text-white text-2xl pt-2 font-bold">Secured -> 73.8%</p>
+          </div>
+        </div>
+        <div class="lg:w-1/3 lg:mb-0 p-4">
+          <div class="h-full text-center">
+            <img alt="testimonial"
+              class="w-32 h-32 mb-8 object-fill object-center rounded-full inline-block border-2 border-white bg-gray-100 shadow-lg shadow-white"
+              src="/images/graduation-cap-solid.svg" />
+            <p class="leading-relaxed">Vidya College of Engineering</p>
+            <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+            <h2 class="text-white font-medium title-font tracking-wider">
+              Btech. (2023)
+            </h2>
+            <p class="text-white text-2xl pt-2 font-bold">
+              Secured -> 72.4%
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact section  -->
+
+  <section id="contact" class="text-white body-font tracking-widest">
+    <form name="submit-to-google-sheet">
+      <div class="container px-5 py-24 mx-auto lg:pl-40">
+        <div class="flex flex-col text-center w-full mb-12">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font">
+            Contact Me
+          </h1>
+        </div>
+        <div class="lg:w-1/2 md:w-2/3 mx-auto">
+          <div class="flex flex-wrap -m-2">
+            <div class="p-2 w-1/2">
+              <div>
+                <label for="name" class="leading-7 text-lg">Name</label>
+                <input type="text" id="name" name="Name" placeholder="NAME"
+                  class="w-full bg-gradient-to-r from-yellow-50 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:from-yellow-50 focus:to-white focus:ring-2 focus:ring-indigo-200 text-bold outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  required />
+              </div>
+            </div>
+            <div class="p-2 w-1/2">
+              <div>
+                <label for="email" class="leading-7 text-lg">Email</label>
+                <input type="email" id="email" name="Email" placeholder="EMAIL"
+                  class="w-full bg-gradient-to-r from-yellow-50 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:from-yellow-50 focus:to-white focus:ring-2 focus:ring-indigo-200 text-bold outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  required />
+              </div>
+            </div>
+            <div class="p-2 w-full">
+              <div>
+                <label for="message" class="leading-7 text-lg">Message</label>
+                <textarea id="message" name="Message" placeholder="Your Valuable Message/Feedback..."
+                  class="w-full bg-gradient-to-r from-yellow-50 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:from-yellow-50 focus:to-white focus:ring-2 focus:ring-indigo-200 h-32 text-bold outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  required></textarea>
+              </div>
+            </div>
+            <div class="p-2 w-full">
+              <button type="submit"
+                class="flex mx-auto text-white font-bold border-0 py-2 px-8 focus:outline-none transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-gradient-to-r from-teal-200 hover:from-gray-900 duration-300 rounded text-lg">
+                Submit
+              </button>
+              <span class="text-green-500 font-bold" id="msg"></span>
+            </div>
+            <div class="p-2 w-full pt-3 mt-3 border-t border-gray-300 text-center">
+              <h1 class="text-white text-lg tracking-widest font-serif">
+                Email - ritik004sh@gmail.com
+              </h1>
+              <span class="inline-flex pt-5">
+                <a href="https://www.instagram.com/ritik.__._/" target="_blank" class="ml-5">
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-10 h-10 hover:animate-bounce" viewBox="0 0 24 24">
+                    <path
+                      d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                  </svg>
+                </a>
+                <a href="https://github.com/ritik902" target="_blank" class="ml-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                    class="bi bi-github w-10 h-10 hover:animate-bounce" viewBox="0 0 24 24">
+                    <path
+                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                  </svg>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- footer section  -->
+
+  <footer class="body-font bg-transparent lg:pl-40">
+    <div class="container px-5 py-3 mx-auto flex items-center flex-col">
+      <span class="text-2xl lg:text-3xl font-medium text-white lg:text-white tracking-widest">-- wEb iS fUn --</span>
+      <p class="text-md lg:text-lg text-white font-medium lg:text-white mt-1 tracking-widest">
+        Made with ♥ by Ritik.
+      </p>
+    </div>
+  </footer>
+
+  <!-- back to top button  -->
+
+  <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light"
+    class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out hidden bottom-5 right-5 fixed"
+    id="btn-back-to-top">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path fill="currentColor"
+        d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z">
+      </path>
+    </svg>
+  </button>
+
+  <!-- javascript -->
+
+  <script>
+    // for back to top button
+
+    let mybutton = document.getElementById("btn-back-to-top");
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+    mybutton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
+    // for smooth scrolling after clicking on link
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
+  </script>
+
+  <script>
+    //  message sent to google sheets
+
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbya3KvVBNwCxWrWynuMB6yRom07l4E4tWTxSJhOnQVrhE-Vcq4JsxUDjGk5XHh7r6YGhw/exec";
+    const form = document.forms["submit-to-google-sheet"];
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then((response) => {
+          msg.innerHTML = "Message Sent Successfully!";
+          setTimeout(function () {
+            msg.innerHTML = "";
+          }, 5000);
+          form.reset();
+        })
+        .catch((error) => console.error("Error!", error.message));
+    });
+  </script>
+</body>
+
+</html>
