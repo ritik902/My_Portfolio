@@ -67,42 +67,42 @@ section .wave.wave4 {
 }
 
 section .start {
-  padding-left: 44%;
+  padding-left: 49%;
   padding-top: 300px;
   letter-spacing: 5px;
 }
 
 section .btn {
-  margin-left: 90px;
+  margin-left: 10px;
   margin-top: 50px;
   padding: 10px;
-  background-color: blueviolet;
+  background-color: rgb(49, 3, 92);
   color: aliceblue;
   font-size: medium;
 }
 
 @media (max-width: 900px) {
   section .start {
-    padding-left: 35%;
+    padding-left: 10%;
   }
 }
 @media (max-width: 1200px) {
   section .start {
-    padding-left: 38%;
+    padding-left: 40%;
   }
 }
 @media (max-width: 600px) {
   section .start {
-    padding-left: 25%;
+    padding-left: 40%;
   }
 }
 @media (max-width: 450px) {
   section .start {
-    padding-left: 20%;
+    padding-left: 35%;
   }
 }
 @media (max-width: 400px) {
   section .start {
-    padding-left: 17%;
+    padding-left: 35%;
   }
 }
