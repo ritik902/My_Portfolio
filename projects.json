@@ -1,0 +1,81 @@
+[
+    {
+        "title": "RealTime Image Captioning using InceptionV3",
+        "image": "/project_images/image_captioning_cnn.png",
+        "link": "https://imagecaptioninginceptionv3cnn.streamlit.app/",
+        "category": "ml"
+      },
+      {
+        "title": "RealTime Sentiment analysis of product reviews (NLP)",
+        "image": "/project_images/NLP.png",
+        "link": "https://predict-realtime-reviews.streamlit.app/",
+        "category": "ml"
+      },
+      {
+        "title": "Developing ETL Pipeline using Kafka & Docker",
+        "image": "/project_images/kafka_docker_pipeline.webp",
+        "link": "https://github.com/ritik902/ETL_pipeline_kafka_docker.git",
+        "category": "ml"
+      },
+      {
+        "title": "RealTime Q&A Chat Bot using Gemini AI Model",
+        "image": "/project_images/Q&A_chatbot.png",
+        "link": "https://mini-q-a-chat-botgit-rijsrgku9jc4nem3nq5f4r.streamlit.app/",
+        "category": "ml"
+      },
+      {
+        "title": "RealTime ATS Resume Checker using Gemini AI Model",
+        "image": "/project_images/ATS_Resume_info.png",
+        "link": "https://mini-ats-resume-info-hcsefvvxvjrug8hnpavm2l.streamlit.app/",
+        "category": "ml"
+      },
+      {
+        "title": "Tic-Tac-Toe Game using Python",
+        "image": "/project_images/py_1.png",
+        "link": "https://github.com/ritik902/mini_python_game.git",
+        "category": "python"
+      },
+      {
+        "title": "My first fully responsive frontend design",
+        "image": "/project_images/p1.png",
+        "link": "https://charming-caramel-9454dd.netlify.app/",
+        "category": "html"
+      },
+      {
+        "title": "Frontend template for a start-up company",
+        "image": "/project_images/p2.png",
+        "link": "https://elaborate-meerkat-a0692d.netlify.app/",
+        "category": "html"
+      },
+      {
+        "title": "Frontend template for a YouTuber",
+        "image": "/project_images/p3.png",
+        "link": "https://comfy-sfogliatella-97bd8a.netlify.app/",
+        "category": "html"
+      },
+      {
+        "title": "Guess The Number Game",
+        "image": "/project_images/js_1.png",
+        "link": "https://hilarious-cocada-356896.netlify.app/",
+        "category": "js"
+      },
+      {
+        "title": "Modal Window Project",
+        "image": "/project_images/js_2.png",
+        "link": "https://lucent-tarsier-5f20bf.netlify.app/",
+        "category": "js"
+      },
+      {
+        "title": "Pig Dice Game",
+        "image": "/project_images/js_3.png",
+        "link": "https://ornate-raindrop-002e6f.netlify.app/",
+        "category": "js"
+      },
+      {
+        "title": "Tic Tac Toe Game (Desktop App)",
+        "image": "/project_images/tic-tac-toe_desktop_app.png",
+        "link": "https://github.com/ritik902/tic-tac-toe_game_pyqt.git",
+        "category": "python"
+      }
+
+  ]
