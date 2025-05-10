@@ -76,6 +76,11 @@
         "image": "/project_images/tic-tac-toe_desktop_app.png",
         "link": "https://github.com/ritik902/tic-tac-toe_game_pyqt.git",
         "category": "python"
+      },
+      {
+        "title": "N-Queens Game (Desktop App)",
+        "image": "/project_images/nqueens.png",
+        "link": "https://github.com/ritik902/NQueens_Game",
+        "category": "python"
       }
-
   ]
