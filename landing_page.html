@@ -10,8 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="shortcut icon" href="/project_images/favicon.ico" type="image/x-icon" />
-  <title>Portfolio</title>
+  <link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+  <meta name="description"
+    content="Ritik Sharma — AI/ML Engineer specialising in Computer Vision, Generative AI and Edge Deployment. GenAI Engineer II at HCL Tech, Pune." />
+  <title>Ritik Sharma — AI/ML Engineer</title>
   <style>
     body {
       font-family: "Edu NSW ACT Foundation", cursive;
@@ -45,9 +47,9 @@
 
   <nav>
     <div
-      class="hidden lg:flex sidenav h-full w-32 lg:mt-1 font-bold fixed justify-evenly flex-col items-center shadow-xl border-b-2 border-gray-100 shadow-white">
+      class="hidden lg:flex sidenav h-full w-32 font-bold fixed top-0 left-0 z-50 justify-center gap-4 flex-col items-center overflow-y-auto bg-black/40 backdrop-blur-sm shadow-xl border-r-2 border-gray-100 shadow-white">
       <a href="index.html"
-        class="hover:animate-pulse hover:text-white tracking-widest bg-black text-white px-11 py-3 -mb-32 -mt-20">
+        class="hover:animate-pulse hover:text-white tracking-widest bg-black text-white w-full text-center px-2 py-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
           class="bi bi-house-fill text-white mx-auto my-3" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -55,24 +57,33 @@
           <path fill-rule="evenodd"
             d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
         </svg>
-        <p>Home</p>
+        <p class="whitespace-nowrap">Home</p>
       </a>
-      <a href="#about" class="hover:bg-black hover:text-white tracking-widest text-white px-11 py-3 -mb-32">
+      <a href="#about" class="hover:bg-black hover:text-white tracking-widest text-white w-full text-center px-2 py-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
           class="bi bi-person-fill mx-auto text-white" viewBox="0 0 16 16">
           <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
         </svg>
-        <p>About</p>
+        <p class="whitespace-nowrap">About</p>
       </a>
-      <a href="#edu" class="hover:bg-black hover:text-white tracking-widest text-white px-7 py-3 -mb-32">
+      <a href="#experience" class="hover:bg-black hover:text-white tracking-widest text-white w-full text-center px-2 py-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+          class="bi bi-briefcase-fill mx-auto mb-2 text-white" viewBox="0 0 16 16">
+          <path
+            d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z" />
+          <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z" />
+        </svg>
+        <p class="whitespace-nowrap">Experience</p>
+      </a>
+      <a href="#edu" class="hover:bg-black hover:text-white tracking-widest text-white w-full text-center px-2 py-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
           class="bi bi-bank2 mx-auto mb-2 text-white" viewBox="0 0 16 16">
           <path
             d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z" />
         </svg>
-        <p>Education</p>
+        <p class="whitespace-nowrap">Education</p>
       </a>
-      <a href="skills.html" class="hover:bg-black hover:text-white tracking-widest text-white px-8 py-3 -mb-32">
+      <a href="skills.html" class="hover:bg-black hover:text-white tracking-widest text-white w-full text-center px-2 py-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
           class="bi bi-hand-thumbs-up-fill mx-auto mb-2 animate-bounce text-white" viewBox="0 0 16 16">
           <path
@@ -86,62 +97,73 @@
           <path
             d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z" />
         </svg>
-        <p>Contact</p>
+        <p class="whitespace-nowrap">Contact</p>
       </a>
     </div>
 
     <div>
       <ul
-        class="top-0 fixed lg:hidden flex flex-row font-bold border-b-2 border-gray-500 bg-gray-100 justify-around text-black w-full h-20 text-sm sm:text-lg sm:tracking-widest">
-        <li class="hidden sm:flex">
+        class="top-0 left-0 z-50 fixed lg:hidden flex flex-row items-center font-bold border-b-2 border-gray-500 bg-gray-100 justify-around text-black w-full h-20 px-1 gap-1 overflow-x-auto text-[10px] sm:text-sm sm:tracking-widest">
+        <li class="hidden sm:flex shrink-0">
           <a href="index.html" class="capitalize hover:uppercase tracking-wider">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-house-fill mx-auto mt-4 mb-1" viewBox="0 0 16 16">
+              class="bi bi-house-fill mx-auto mb-1" viewBox="0 0 16 16">
               <path fill-rule="evenodd"
                 d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
               <path fill-rule="evenodd"
                 d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
             </svg>
-            <p>Home</p>
+            <p class="whitespace-nowrap">Home</p>
           </a>
         </li>
-        <li>
+        <li class="shrink-0">
           <a href="#about" class="capitalize hover:uppercase tracking-wider">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-              class="bi bi-person-fill mx-auto mt-3 mb-1" viewBox="0 0 16 16">
+              class="bi bi-person-fill mx-auto mb-1" viewBox="0 0 16 16">
               <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
             </svg>
-            <p>About</p>
+            <p class="whitespace-nowrap">About</p>
           </a>
         </li>
-        <li>
+        <li class="shrink-0">
+          <a href="#experience" class="capitalize hover:uppercase tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+              class="bi bi-briefcase-fill mx-auto mb-1" viewBox="0 0 16 16">
+              <path
+                d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z" />
+              <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z" />
+            </svg>
+            <p class="whitespace-nowrap">Experience</p>
+          </a>
+        </li>
+        <li class="shrink-0">
           <a href="#edu" class="capitalize hover:uppercase tracking-wider">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-bank2 mx-auto mt-4 mb-1" viewBox="0 0 16 16">
+              class="bi bi-bank2 mx-auto mb-1" viewBox="0 0 16 16">
               <path
                 d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z" />
             </svg>
-            <p>Education</p>
+            <p class="whitespace-nowrap">Education</p>
           </a>
         </li>
-        <li>
+        <li class="shrink-0">
           <a href="skills.html" class="capitalize hover:uppercase tracking-wider">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-              class="bi bi-hand-thumbs-up-fill mx-auto mt-4 mb-1 animate-bounce" viewBox="0 0 16 16">
+              class="bi bi-hand-thumbs-up-fill mx-auto mb-1 animate-bounce" viewBox="0 0 16 16">
               <path
                 d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
             </svg>
-            <p>Skills & Projects</p>
+            <p class="whitespace-nowrap">Skills</p>
           </a>
         </li>
-        <li>
+        <li class="shrink-0">
           <a href="#contact" class="capitalize hover:uppercase tracking-wider">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-chat-text-fill mx-auto mt-4 mb-1" viewBox="0 0 16 16">
+              class="bi bi-chat-text-fill mx-auto mb-1" viewBox="0 0 16 16">
               <path
                 d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z" />
             </svg>
-            <p>Contact</p>
+            <p class="whitespace-nowrap">Contact</p>
           </a>
         </li>
       </ul>
@@ -150,48 +172,66 @@
 
   <!-- top section  -->
 
-  <div class="container px-6 mx-auto lg:pl-64 pt-48 md:pb-20">
-    <section class="mb-32 text-white text-center lg:text-left">
-      <div class="block rounded-lg shadow-2xl shadow-black bg-transparent sm:w-9/12 mx-auto">
-        <div class="flex flex-wrap items-center">
-          <div class="block w-7/12 mx-auto lg:flex grow-0 shrink-0 basis-auto lg:w-6/12 xl:w-4/12">
-            <img src="images/myimage.jpg" alt="myimage" class="w-full lg:pl-5 rounded-2xl" />
+  <div class="container px-4 sm:px-6 mx-auto lg:pl-64 pt-28 sm:pt-32 lg:pt-40 md:pb-20">
+    <section class="mb-20 sm:mb-32 text-white text-center">
+      <div class="relative mx-auto w-full max-w-2xl">
+        <div
+          class="relative rounded-[2rem] border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl shadow-black/60 px-5 py-10 sm:px-10 sm:py-14">
+
+          <!-- profile photo -->
+          <div
+            class="mx-auto mb-7 h-36 w-36 sm:h-44 sm:w-44 lg:h-52 lg:w-52 rounded-full p-[3px] bg-white/25 shadow-2xl shadow-black/70">
+            <img src="assets/images/profile.png" alt="Portrait of Ritik Sharma"
+              class="h-full w-full rounded-full object-cover object-top border-4 border-white/10" />
           </div>
-          <div class="grow-0 shrink-0 basis-auto w-full lg:w-6/12 xl:w-8/12">
-            <div class="px-6 py-12 md:px-12">
-              <h2 class="text-4xl sm:text-5xl font-serif font-bold mb-4 text-white display-5 tracking-widest">
-                <span class="text-7xl text-red-500">R</span>itik
-                <span class="text-7xl text-red-500">S</span>harma
-              </h2>
-              <p class="text-white text-md sm:text-xl font-bold font-serif italic tracking-wide sm:tracking-widest my-7"
-                id="para">
-                <!-- Software Developer @ Griffyn Robotech Pvt. Ltd. | Automation | Python | ML | DL | NLP | CV | Linux | PyQt -->
-                 Software Developer - Python (AI/ML) @Griffyn Robotech Pvt. Ltd. | Computer Vision • NLP • Automation • TensorFlow • Pytorch • ML • DL • Linux
-                <!-- <span class="text-red-500">^ PYTHON </span> <br />
-                ^ VIDEO CREATOR <br />
-                <span class="text-red-500">^ FREELANCER</span> <br />
-                ^ EDITOR -->
-              </p>
-              <div class="flex justify-center">
-                <a href="/images/my_resume.pdf" download>
-                  <button
-                    class="inline-flex font-bold border-0 py-2 px-1 sm:px-6 focus:outline-none hover:text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-gradient-to-r from-green-500 hover:from-gray-900 duration-300 rounded text-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                      class="bi bi-cloud-arrow-down-fill my-auto mx-2 sm:mr-3" viewBox="0 0 16 16">
-                      <path
-                        d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z" />
-                    </svg>
-                    Resume
-                  </button>
-                </a>
-                <a href="projects.html" target="_blank">
-                  <button
-                    class="ml-4 inline-flex font-bold border-0 py-2 px-6 hover:text-white focus:outline-none transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-gradient-to-r from-yellow-500 hover:from-gray-900 duration-300 rounded text-lg">
-                    Projects
-                  </button>
-                </a>
-              </div>
-            </div>
+
+          <!-- location -->
+          <p
+            class="inline-flex items-center gap-2 mb-5 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-4 py-1 text-xs sm:text-sm tracking-widest text-emerald-300">
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Pune, India
+          </p>
+
+          <h1 class="text-4xl sm:text-6xl font-serif font-bold text-white tracking-widest leading-tight">
+            <span class="text-red-300">R</span>itik
+            <span class="text-red-300">S</span>harma
+          </h1>
+
+          <p class="mt-4 text-lg sm:text-2xl font-bold font-serif italic tracking-wide text-white" id="para">
+            GenAI Engineer II <span class="text-red-300">@ HCL Tech</span>
+          </p>
+
+          <span class="mx-auto mt-6 mb-6 block h-px w-24 bg-gradient-to-r from-transparent via-white/50 to-transparent"
+            aria-hidden="true"></span>
+
+          <ul class="flex flex-wrap justify-center gap-2 sm:gap-3">
+            <li
+              class="rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1 text-xs sm:text-sm font-semibold tracking-wider text-gray-100">
+              Computer Vision</li>
+            <li
+              class="rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1 text-xs sm:text-sm font-semibold tracking-wider text-gray-100">
+              Generative AI</li>
+            <li
+              class="rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1 text-xs sm:text-sm font-semibold tracking-wider text-gray-100">
+              Edge Deployment</li>
+          </ul>
+
+          <p class="mx-auto mt-7 max-w-md text-sm sm:text-base leading-relaxed text-gray-300">
+            Production AI systems end to end — from data and training through to
+            real-time, edge-optimized deployment.
+          </p>
+
+          <div class="mt-9">
+            <a href="assets/docs/RitikSharma_Resume.pdf" download
+              class="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-3 text-lg font-bold text-white shadow-lg shadow-emerald-900/50 transition duration-300 ease-in-out hover:-translate-y-1 hover:from-gray-900 hover:to-gray-800 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-cloud-arrow-down-fill transition-transform duration-300 group-hover:translate-y-0.5"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z" />
+              </svg>
+              Download Resume
+            </a>
           </div>
         </div>
       </div>
@@ -201,14 +241,14 @@
   <!-- about section -->
 
   <div id="about"
-    class="justify-center bg-gradient-to-r from-purple-100 pt-3 items-center w-3/4 rounded-l-full ml-auto flex mt-10 lg:mt-14">
+    class="justify-center bg-gradient-to-r from-purple-100 pt-3 items-center w-11/12 sm:w-3/4 rounded-l-full ml-auto flex mt-10 lg:mt-14">
     <h1 class="sm:text-3xl text-2xl font-bold title-font mb-4 tracking-wider">
-      aBoUt mE
+      About Me
     </h1>
   </div>
 
   <section class="text-white body-font tracking-widest">
-    <div class="container px-5 py-24 mx-auto lg:pl-40">
+    <div class="container px-4 sm:px-5 py-16 sm:py-24 mx-auto lg:pl-40">
       <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block w-8 h-8 text-gray-400 mb-8"
           viewBox="0 0 975.036 975.036">
@@ -218,11 +258,16 @@
         </svg>
         <p class="leading-relaxed text-xl">
           <span class="text-2xl font-serif font-bold">HELLO !</span> <br />
-          "My name is Ritik Sharma, and my portfolio is a representation of
-          all that i've learned and accomplished as a Computer Science, Big Data and ML Student." <br />
-          I'm a Software Engineer by training from the Vidya College of
-          Engineering. I've completed my PG-DBDA from CDAC Pune. In my free time, I continuously strive to enhance my programming and machine learning skills. Outside of coding, I have a passion for song editing, especially in LoFi style, as well as observing, exercising, traveling, and creating content for my YouTube channel. <br />
-          Thank you for visiting my site, and I hope you have a wonderful day!
+          I'm an AI/ML Engineer with nearly 2 years of experience across Machine
+          Learning, Computer Vision, Generative AI (RAG / LLMs &amp; agentic AI) and
+          Edge Deployment. <br />
+          I've architected production-grade defect-detection systems running at
+          <span class="text-red-400 font-bold">95%+ accuracy</span> for global markets
+          (US / Japan), and optimized high-speed vision pipelines with TensorRT and CUDA
+          to cut inference latency by <span class="text-red-400 font-bold">98%</span>. <br />
+          I take models the whole way — from data preparation and training through to
+          real-time, edge-optimized deployment. <br />
+          Currently building enterprise GenAI solutions at HCL Tech, Pune.
           <span id="blinker">▮</span>
         </p>
         <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6"></span>
@@ -230,56 +275,136 @@
     </div>
   </section>
 
+  <!-- experience section  -->
+
+  <div id="experience"
+    class="justify-center bg-gradient-to-l from-purple-100 pt-3 items-center w-11/12 sm:w-3/4 rounded-r-full flex">
+    <h1 class="sm:text-3xl text-2xl font-bold title-font mb-4 tracking-wider">
+      Experience
+    </h1>
+  </div>
+
+  <section class="text-white body-font tracking-wide">
+    <div class="container px-4 sm:px-5 py-16 sm:py-24 mx-auto lg:pl-40">
+      <div class="xl:w-3/4 w-full mx-auto">
+          <div class="relative border-l-2 border-gray-500 pl-5 sm:pl-10 pb-10 sm:pb-12 last:pb-0">
+            <span class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-green-400 border-2 border-gray-900"></span>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h2 class="text-lg sm:text-2xl font-bold">GenAI Engineer II <span class="text-green-400">— HCL Tech</span></h2>
+              <p class="text-sm sm:text-base text-gray-300">Aug 2026 – Present</p>
+            </div>
+            <p class="text-sm sm:text-base text-gray-400 mb-4">Pune, India</p>
+            <ul class="list-disc list-outside ml-4 sm:ml-5 text-sm sm:text-base text-gray-200 text-left">
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Focus:</span> Building enterprise GenAI solutions — LLM applications, RAG, and agentic AI systems — delivered on Azure cloud.
+              </li>
+            </ul>
+          </div>
+
+          <div class="relative border-l-2 border-gray-500 pl-5 sm:pl-10 pb-10 sm:pb-12 last:pb-0">
+            <span class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-yellow-400 border-2 border-gray-900"></span>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h2 class="text-lg sm:text-2xl font-bold">Software Developer <span class="text-yellow-400">— Griffyn Robotech Pvt. Ltd.</span></h2>
+              <p class="text-sm sm:text-base text-gray-300">Nov 2024 – Aug 2026</p>
+            </div>
+            <p class="text-sm sm:text-base text-gray-400 mb-4">Pune, India</p>
+            <h3 class="text-lg font-bold text-gray-100 mt-5 mb-2">Project: Impersonator — Mobile Screen Defect Detection System</h3>
+            <ul class="list-disc list-outside ml-4 sm:ml-5 text-sm sm:text-base text-gray-200 text-left">
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Production Deployment:</span> Engineered a vision system deployed across the US and Japan for mobile-screen defect detection (dead pixels, discoloration, line defects), sustaining 95%+ accuracy over thousands of production cycles.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Line-Defect Analysis:</span> Built a line-defect detection module that localizes each defect and reports its count, size/length, and orientation (horizontal vs. vertical) per screen for precise QC grading.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Dead-Pixel Analysis:</span> Developed dead-pixel detection returning per-defect coordinates, size, severity level, and detailed classification metadata for downstream reporting.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Model Architecture:</span> Migrated from legacy image processing to a deep-learning pipeline using ConvNeXt trained on 20,000+ images, and customized YOLOv11s (P2 layer) for microscopic sub-pixel defect localization.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Data Engineering:</span> Solved data scarcity with a synthetic data-generation engine that programmatically creates complex defect patterns (e.g., screen burn), saving 3+ months of manual collection.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Distributed Inference:</span> Co-architected a FastAPI inference service letting edge machines offload heavy model execution to a centralized server for real-time processing.
+              </li>
+            </ul>
+            <h3 class="text-lg font-bold text-gray-100 mt-5 mb-2">Project: Optivity — High-Speed Vision &amp; GenAI</h3>
+            <ul class="list-disc list-outside ml-4 sm:ml-5 text-sm sm:text-base text-gray-200 text-left">
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Hybrid Detection Pipeline:</span> Built an end-to-end Barcode/QR recognition pipeline on NVIDIA Jetson using YOLO localization, custom OpenCV preprocessing, and PyZbar decoding.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Latency Optimization:</span> Re-engineered detection with CUDA and TensorRT on NVIDIA Jetson (tuned for power/thermal limits), cutting inference time from 2000 ms to 40 ms (98% faster) for high-throughput lines.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Optivity Agent (Agentic AI):</span> Built an internal conversational AI assistant (chatbot + agent) using DeepSeek R1, RAG, and vector DBs over the full codebase — delivering context-aware debugging, architecture insights, and automated task assistance to the dev team.
+              </li>
+            </ul>
+            <h3 class="text-lg font-bold text-gray-100 mt-5 mb-2">Project: Bulk &amp; Pouch Packaging</h3>
+            <ul class="list-disc list-outside ml-4 sm:ml-5 text-sm sm:text-base text-gray-200 text-left">
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Full-Stack Development:</span> Developed a modular PySide6 desktop UI integrated with a high-speed Socket.io backend for real-time production data in reverse-logistics packaging systems.
+              </li>
+            </ul>
+          </div>
+
+          <div class="relative border-l-2 border-gray-500 pl-5 sm:pl-10 pb-10 sm:pb-12 last:pb-0">
+            <span class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-indigo-400 border-2 border-gray-900"></span>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h2 class="text-lg sm:text-2xl font-bold">Intern <span class="text-indigo-400">— C-DAC</span></h2>
+              <p class="text-sm sm:text-base text-gray-300">Sept 2022 – Feb 2023</p>
+            </div>
+            <p class="text-sm sm:text-base text-gray-400 mb-4">Noida, India</p>
+            <ul class="list-disc list-outside ml-4 sm:ml-5 text-sm sm:text-base text-gray-200 text-left">
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Big Data Analytics:</span> Worked with Hadoop and PySpark to build ML prototypes for large-scale data processing.
+              </li>
+              <li class="mb-2 leading-relaxed">
+                <span class="font-bold text-gray-100">Sentiment Stream:</span> Built an end-to-end NLP pipeline for product-review analysis using Python, LSTM, and Streamlit.
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </section>
+
   <!-- education section  -->
 
-  <div id="edu" class="justify-center bg-gradient-to-l from-purple-100 pt-3 items-center w-3/4 rounded-r-full flex">
+  <div id="edu"
+    class="justify-center bg-gradient-to-r from-purple-100 pt-3 items-center w-11/12 sm:w-3/4 rounded-l-full ml-auto flex">
     <h1 class="sm:text-3xl text-2xl font-bold title-font mb-4 tracking-wider">
-      eDuCaTiOn
+      Education
     </h1>
   </div>
 
   <section class="text-white body-font tracking-widest">
-    <div class="container px-5 py-24 mx-auto lg:pl-40">
+    <div class="container px-4 sm:px-5 py-16 sm:py-24 mx-auto lg:pl-40">
       <div class="flex flex-wrap -m-4 flex-col sm:flex-row mx-auto text-xl">
-        <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+        <div class="w-full sm:w-1/2 lg:mb-0 mb-6 p-4">
           <div class="h-full text-center">
-            <img alt="testimonial"
+            <img alt="C-DAC Pune"
               class="w-32 h-32 mb-8 object-fill object-center rounded-full inline-block border-2 border-white bg-gray-100 shadow-lg shadow-white"
-              src="/images/school-solid.svg" />
-            <p class="leading-relaxed">D.S. Public School</p>
+              src="assets/icons/graduation-cap-solid.svg" />
+            <p class="leading-relaxed">C-DAC, Pune</p>
             <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
             <h2 class="text-white font-medium title-font tracking-wider">
-              Intermediate (2018)
+             PG-Diploma in DBDA &amp; ML (2024)
             </h2>
-            <p class="text-white text-2xl pt-2 font-bold">Secured -> 73.8%</p>
+            <p class="text-white text-xl pt-2 font-bold">Secured -&gt; Grade B</p>
           </div>
         </div>
-        <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
+        <div class="w-full sm:w-1/2 lg:mb-0 mb-6 p-4">
           <div class="h-full text-center">
-            <img alt="testimonial"
+            <img alt="Vidya College of Engineering"
               class="w-32 h-32 mb-8 object-fill object-center rounded-full inline-block border-2 border-white bg-gray-100 shadow-lg shadow-white"
-              src="/images/bank.svg" />
-            <p class="leading-relaxed">Vidya College of Engineering</p>
+              src="assets/icons/bank.svg" />
+            <p class="leading-relaxed">Vidya College of Engineering (AKTU), Uttar Pradesh</p>
             <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
             <h2 class="text-white font-medium title-font tracking-wider">
-              Btech. (2023)
+              B.Tech, Computer Science Engineering (2023)
             </h2>
-            <p class="text-white text-2xl pt-2 font-bold">Secured -> 72.4%</p>
-          </div>
-        </div>
-        <div class="lg:w-1/3 lg:mb-0 p-4">
-          <div class="h-full text-center">
-            <img alt="testimonial"
-              class="w-32 h-32 mb-8 object-fill object-center rounded-full inline-block border-2 border-white bg-gray-100 shadow-lg shadow-white"
-              src="/images/graduation-cap-solid.svg" />
-            <p class="leading-relaxed">CDAC, Pune</p>
-            <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
-            <h2 class="text-white font-medium title-font tracking-wider">
-              PG-DBDA (AUG. 2024)
-            </h2>
-            <p class="text-white text-2xl pt-2 font-bold">
-              Secured -> 60.6%
-            </p>
+            <p class="text-white text-xl pt-2 font-bold">Secured -&gt; 72.4%</p>
           </div>
         </div>
       </div>
@@ -290,7 +415,7 @@
 
   <section id="contact" class="text-white body-font tracking-widest">
     <form name="submit-to-google-sheet">
-      <div class="container px-5 py-24 mx-auto lg:pl-40">
+      <div class="container px-4 sm:px-5 py-16 sm:py-24 mx-auto lg:pl-40">
         <div class="flex flex-col text-center w-full mb-12">
           <h1 class="sm:text-3xl text-2xl font-medium title-font">
             Contact Me
@@ -298,7 +423,7 @@
         </div>
         <div class="lg:w-1/2 md:w-2/3 mx-auto">
           <div class="flex flex-wrap -m-2">
-            <div class="p-2 w-1/2">
+            <div class="p-2 w-full sm:w-1/2">
               <div>
                 <label for="name" class="leading-7 text-lg">Name</label>
                 <input type="text" id="name" name="name" placeholder="NAME"
@@ -306,7 +431,7 @@
                   required />
               </div>
             </div>
-            <div class="p-2 w-1/2">
+            <div class="p-2 w-full sm:w-1/2">
               <div>
                 <label for="email" class="leading-7 text-lg">Email</label>
                 <input type="email" id="email" name="email" placeholder="EMAIL"
@@ -358,7 +483,7 @@
 
   <footer class="body-font bg-transparent lg:pl-40">
     <div class="container px-5 py-3 mx-auto flex items-center flex-col">
-      <span class="text-2xl lg:text-3xl font-medium text-white lg:text-white tracking-widest">-- wEb iS fUn --</span>
+      <span class="text-2xl lg:text-3xl font-medium text-white lg:text-white tracking-widest">-- bUiLd. sHiP. iTeRaTe. --</span>
       <p class="text-md lg:text-lg text-white font-medium lg:text-white mt-1 tracking-widest">
         Made with ♥ by Ritik.
       </p>

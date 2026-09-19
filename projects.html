@@ -1,4 +1,4 @@
-v<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,8 +9,10 @@ v<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="shortcut icon" href="/project_images/favicon.ico" type="image/x-icon" />
-  <title>Projects</title>
+  <link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+  <meta name="description"
+    content="Personal and open-source projects by Ritik Sharma — machine learning, computer vision, NLP and Python applications." />
+  <title>Projects — Ritik Sharma</title>
   <style>
     body {
       font-family: "Edu NSW ACT Foundation", cursive;
@@ -39,28 +41,37 @@ v<!DOCTYPE html>
 
   <!-- Section: All Projects -->
   <div class="flex justify-center pt-3">
-    <h1 class="sm:text-3xl text-2xl font-bold tracking-wider">My Projects</h1>
+    <h1 class="sm:text-3xl text-2xl font-bold tracking-wider">Personal Projects</h1>
+  </div>
+
+  <div class="flex justify-center px-6 pt-3">
+    <p class="text-center max-w-2xl tracking-wide">
+      Side projects and open-source work. My production AI/ML work at Griffyn Robotech and
+      HCL Tech is covered on the
+      <a href="landing_page.html#experience" class="underline font-bold">experience</a>
+      section of the home page.
+    </p>
   </div>
 
   <!-- Filter Buttons -->
-  <div class="flex justify-center mt-6 gap-4 flex-wrap" id="filter-buttons">
-    <button id="btn-all" onclick="filterProjects('all')" class="filter-btn bg-white text-black font-bold px-4 py-2 rounded hover:bg-gray-200">All</button>
-    <button id="btn-python" onclick="filterProjects('python')" class="filter-btn bg-white text-black font-bold px-4 py-2 rounded hover:bg-gray-200">Python</button>
-    <button id="btn-ml" onclick="filterProjects('ml')" class="filter-btn bg-white text-black font-bold px-4 py-2 rounded hover:bg-gray-200">Machine Learning</button>
-    <button id="btn-js" onclick="filterProjects('js')" class="filter-btn bg-white text-black font-bold px-4 py-2 rounded hover:bg-gray-200">JavaScript</button>
-    <button id="btn-html" onclick="filterProjects('html')" class="filter-btn bg-white text-black font-bold px-4 py-2 rounded hover:bg-gray-200">HTML/CSS</button>
+  <div class="flex justify-center mt-6 gap-2 sm:gap-4 flex-wrap px-4" id="filter-buttons">
+    <button id="btn-all" onclick="filterProjects('all')" class="filter-btn bg-white text-black font-bold text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-gray-200">All</button>
+    <button id="btn-python" onclick="filterProjects('python')" class="filter-btn bg-white text-black font-bold text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-gray-200">Python</button>
+    <button id="btn-ml" onclick="filterProjects('ml')" class="filter-btn bg-white text-black font-bold text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-gray-200">Machine Learning</button>
+    <button id="btn-js" onclick="filterProjects('js')" class="filter-btn bg-white text-black font-bold text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-gray-200">JavaScript</button>
+    <button id="btn-html" onclick="filterProjects('html')" class="filter-btn bg-white text-black font-bold text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-gray-200">HTML/CSS</button>
   </div>
 
   <!-- Projects Container -->
-  <div class="container my-10 px-6 mx-auto">
+  <div class="container my-10 px-4 sm:px-6 mx-auto">
     <section class="mb-32">
-      <div id="projects-container" class="grid lg:grid-cols-3 gap-10"></div>
+      <div id="projects-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10"></div>
     </section>
   </div>
 
   <footer class="body-font border-t-2 border-gray-100">
     <div class="container px-5 py-3 mx-auto flex items-center flex-col">
-      <span class="text-lg lg:text-2xl font-medium tracking-widest">-- kEeP hUsTlInG --</span>
+      <span class="text-lg lg:text-2xl font-medium tracking-widest">-- kEeP bUiLdInG --</span>
       <p class="text-md mt-1 tracking-widest">Made with ♥ by Ritik.</p>
     </div>
   </footer>
@@ -70,7 +81,7 @@ v<!DOCTYPE html>
     let allProjects = [];
 
     async function fetchProjects() {
-      const res = await fetch('projects.json');
+      const res = await fetch('assets/data/projects.json');
       allProjects = await res.json();
       renderProjects('all');
     }

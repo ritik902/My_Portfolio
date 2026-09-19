@@ -1,0 +1,142 @@
+/* ---------- splash page (index.html) ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* height of the animated wave band at the bottom of the screen */
+  --wave-height: 200px;
+}
+
+section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  /* svh accounts for mobile browser chrome; ignored by browsers that lack it */
+  min-height: 100svh;
+  /* keep the content clear of the wave band and off the screen edges */
+  padding: 24px 16px calc(var(--wave-height) + 24px);
+  overflow: hidden;
+  background: url("../images/landing.svg") center center / cover no-repeat;
+}
+
+section .start {
+  position: relative;
+  /* the waves sit at z-index 997-1000 */
+  z-index: 1001;
+  width: 100%;
+  max-width: 640px;
+  text-align: center;
+  letter-spacing: 5px;
+}
+
+section .start h1 {
+  font-size: clamp(2.25rem, 9vw, 4.5rem);
+  line-height: 1.15;
+}
+
+section .start h2 {
+  margin-top: 12px;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+section .btn {
+  margin-top: 40px;
+  padding: 12px 26px;
+  border: 0;
+  border-radius: 6px;
+  background-color: rgb(49, 3, 92);
+  color: aliceblue;
+  font: inherit;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+section .btn:hover,
+section .btn:focus-visible {
+  transform: translateY(-2px);
+  background-color: rgb(73, 12, 130);
+}
+
+/* ---------- waves ---------- */
+
+section .wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--wave-height);
+  /* the 1000px tile width must match the keyframe distance below */
+  background: url("../images/wave.png") repeat-x;
+  background-size: 1000px var(--wave-height);
+}
+
+section .wave.wave1 {
+  animation: animate 4s linear infinite;
+  z-index: 1000;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+}
+section .wave.wave2 {
+  animation: animate2 5s linear infinite;
+  z-index: 999;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+}
+section .wave.wave3 {
+  animation: animate 2s linear infinite;
+  z-index: 998;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+}
+section .wave.wave4 {
+  animation: animate2 7s linear infinite;
+  z-index: 997;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}
+@keyframes animate2 {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}
+
+/* Shorter wave band on small screens so the text keeps room to breathe.
+   The 1000px tile width is unchanged, so the animation still loops seamlessly. */
+@media (max-width: 640px) {
+  :root {
+    --wave-height: 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section .wave {
+    animation: none;
+  }
+}
