@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/space.css" />
   <link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon" />
   <meta name="description"
     content="Technical skills of Ritik Sharma — AI/ML Engineer: Computer Vision, Generative AI, Deep Learning, MLOps and Edge Deployment." />
@@ -17,64 +18,37 @@
   <style>
     body {
       font-family: "Edu NSW ACT Foundation", cursive;
-      text-shadow: 1px 1px 1px #ababab;
-      background: conic-gradient(at center top,
-          rgb(17, 24, 39),
-          rgb(243, 244, 246),
-          rgb(17, 24, 39));
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
   </style>
 </head>
 
 <body class="scroll-smooth">
-  <!-- nav section  -->
+  <!-- floating nav: back home (left) / projects (right) -->
 
-  <nav>
-    <div>
-      <ul
-        class="top-0 left-0 z-50 fixed flex flex-row items-center font-bold shadow-lg shadow-gray-800 bg-black justify-around text-white w-full h-20 px-2 text-xs sm:text-lg sm:tracking-widest">
-        <li>
-          <a href="landing_page.html" class="capitalize hover:uppercase tracking-wider">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-house-fill mx-auto mt-4 mb-1" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-              <path fill-rule="evenodd"
-                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-            </svg>
-            <p>Home</p>
-          </a>
-        </li>
+  <a href="landing_page.html" aria-label="Back to home"
+    class="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md shadow-lg shadow-black/50 transition duration-300 hover:-translate-x-0.5 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"
+      aria-hidden="true">
+      <path fill-rule="evenodd"
+        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+    </svg>
+  </a>
 
-        <li>
-          <a href="projects.html" class="capitalize hover:uppercase tracking-wider">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-emoji-smile-upside-down-fill mx-auto mt-4 mb-1 animate-bounce" viewBox="0 0 16 16">
-              <path
-                d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM7 9.5C7 8.672 6.552 8 6 8s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5zM4.285 6.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 4.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 3.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM10 8c-.552 0-1 .672-1 1.5s.448 1.5 1 1.5 1-.672 1-1.5S10.552 8 10 8z" />
-            </svg>
-            <p>Projects</p>
-          </a>
-        </li>
-
-        <!-- <li>
-          <a href="contact.html" class="capitalize hover:uppercase tracking-wider">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-chat-text-fill mx-auto mt-4 mb-1" viewBox="0 0 16 16">
-              <path
-                d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z" />
-            </svg>
-            <p>Contact</p>
-          </a>
-        </li> -->
-      </ul>
-    </div>
-  </nav>
+  <a href="projects.html"
+    class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 sm:px-5 py-2.5 text-sm sm:text-base font-bold tracking-wider text-white backdrop-blur-md shadow-lg shadow-black/50 transition duration-300 hover:-translate-y-0.5 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70">
+    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16"
+      aria-hidden="true">
+      <path
+        d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
+    </svg>
+    Projects
+  </a>
 
   <!-- hero section  -->
 
-  <section class="text-black body-font pt-5">
-    <div class="container px-4 sm:px-5 py-20 sm:py-24 mx-auto -mb-14">
+  <section class="text-gray-100 body-font pt-5">
+    <div class="container px-4 sm:px-5 pt-14 sm:pt-16 pb-20 sm:pb-24 mx-auto -mb-14">
       <div class="text-center mb-12">
         <h1 class="title-font text-3xl sm:text-4xl font-bold mb-3">
           Technical Skills
@@ -85,7 +59,7 @@
       </div>
 
       <div class="grid md:grid-cols-2 gap-6 mb-20">
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">Languages</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-sky-100 text-sky-900 border-sky-300 border rounded-full px-3 py-1 text-sm font-semibold">Python</li>
@@ -93,7 +67,7 @@
               <li class="bg-sky-100 text-sky-900 border-sky-300 border rounded-full px-3 py-1 text-sm font-semibold">Bash</li>
           </ul>
         </div>
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">Machine Learning</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-emerald-100 text-emerald-900 border-emerald-300 border rounded-full px-3 py-1 text-sm font-semibold">scikit-learn</li>
@@ -106,7 +80,7 @@
               <li class="bg-emerald-100 text-emerald-900 border-emerald-300 border rounded-full px-3 py-1 text-sm font-semibold">Hyperparameter Tuning (Optuna, GridSearch)</li>
           </ul>
         </div>
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">Deep Learning</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-violet-100 text-violet-900 border-violet-300 border rounded-full px-3 py-1 text-sm font-semibold">PyTorch</li>
@@ -119,7 +93,7 @@
               <li class="bg-violet-100 text-violet-900 border-violet-300 border rounded-full px-3 py-1 text-sm font-semibold">Transfer Learning &amp; Fine-tuning</li>
           </ul>
         </div>
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">Computer Vision</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-amber-100 text-amber-900 border-amber-300 border rounded-full px-3 py-1 text-sm font-semibold">YOLOv8 / YOLOv11s</li>
@@ -132,7 +106,7 @@
               <li class="bg-amber-100 text-amber-900 border-amber-300 border rounded-full px-3 py-1 text-sm font-semibold">Synthetic Data Generation</li>
           </ul>
         </div>
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">Generative AI / NLP</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-rose-100 text-rose-900 border-rose-300 border rounded-full px-3 py-1 text-sm font-semibold">RAG Pipelines</li>
@@ -145,7 +119,7 @@
               <li class="bg-rose-100 text-rose-900 border-rose-300 border rounded-full px-3 py-1 text-sm font-semibold">Vector DBs (ChromaDB, Qdrant)</li>
           </ul>
         </div>
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">Data &amp; Visualization</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-teal-100 text-teal-900 border-teal-300 border rounded-full px-3 py-1 text-sm font-semibold">Pandas</li>
@@ -157,7 +131,7 @@
               <li class="bg-teal-100 text-teal-900 border-teal-300 border rounded-full px-3 py-1 text-sm font-semibold">Jupyter</li>
           </ul>
         </div>
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">MLOps &amp; Deployment</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-indigo-100 text-indigo-900 border-indigo-300 border rounded-full px-3 py-1 text-sm font-semibold">Docker</li>
@@ -174,7 +148,7 @@
               <li class="bg-indigo-100 text-indigo-900 border-indigo-300 border rounded-full px-3 py-1 text-sm font-semibold">Model Quantization</li>
           </ul>
         </div>
-        <div class="bg-white/70 rounded-xl border-2 border-gray-300 shadow-lg p-6">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg shadow-black/40 p-6">
           <h2 class="text-xl sm:text-2xl font-bold mb-4 tracking-wider text-center">Tools &amp; Other</h2>
           <ul class="flex flex-wrap gap-2 justify-center">
               <li class="bg-slate-200 text-slate-900 border-slate-400 border rounded-full px-3 py-1 text-sm font-semibold">PySide6 / PyQt</li>
@@ -204,7 +178,7 @@
                 Based on feedback
               </p>
               <div class="flex items-center flex-wrap flex-col">
-                <h1 class="text-indigo-500 inline-flex items-center mb-5 text-2xl">
+                <h1 class="text-indigo-300 inline-flex items-center mb-5 text-2xl">
                   General :
                 </h1>
                 <div class="mb-5">
@@ -561,19 +535,19 @@
 
 
   <div class="justify-center pt-3 items-center w-full flex lg:mt-14">
-    <h1 class="sm:text-3xl text-2xl font-bold title-font tracking-wider text-black">
+    <h1 class="sm:text-3xl text-2xl font-bold title-font tracking-wider text-gray-100">
       Coding Platforms Profile Links :
     </h1>
   </div>
 
-  <section class="text-gray-600 body-font">
+  <section class="text-gray-100 body-font">
     <div class="container px-5 py-10 mx-auto">
       <div class="flex flex-wrap -m-4">
         <div class="w-full sm:w-1/3 sm:mb-0 mb-6 p-4">
           <div class="h-full text-center">
             <a href="https://www.hackerrank.com/profile/ritik004sharma" target="_blank">
             <img alt="hackerrank" class="w-20 h-20 object-cover object-center hover:animate-bounce rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="assets/icons/hackerrank.png"></a>
-            <h1 class="text-gray-900 font-medium title-font tracking-wider text-2xl">Hacker Rank</h1>
+            <h1 class="text-gray-100 font-medium title-font tracking-wider text-2xl">Hacker Rank</h1>
             <!-- <p class="text-gray-500">Senior Product Designer</p> -->
           </div>
         </div>
@@ -581,7 +555,7 @@
           <div class="h-full text-center">
             <a href="https://leetcode.com/u/ritik_004/" target="_blank">
             <img alt="leetcode" class="w-20 h-20 object-cover object-center hover:animate-bounce rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="assets/icons/leetcode.png"></a>
-            <h1 class="text-gray-900 font-medium title-font tracking-wider text-2xl">Leet Code</h1>
+            <h1 class="text-gray-100 font-medium title-font tracking-wider text-2xl">Leet Code</h1>
             <!-- <p class="text-gray-500">UI Develeoper</p> -->
           </div>
         </div>
@@ -589,7 +563,7 @@
           <div class="h-full text-center">
             <a href="https://github.com/ritik902" target="_blank">
             <img alt="github" class="w-20 h-20 object-cover object-center hover:animate-bounce rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="assets/icons/github.svg"></a>
-            <h1 class="text-gray-900 font-medium title-font tracking-wider text-2xl">Git Hub</h1>
+            <h1 class="text-gray-100 font-medium title-font tracking-wider text-2xl">Git Hub</h1>
             <!-- <p class="text-gray-500">CTO</p> -->
           </div>
         </div>
@@ -600,16 +574,16 @@
 
 
   <div class="justify-center pt-3 items-center w-full flex lg:mt-20">
-    <h1 class="sm:text-3xl text-2xl font-bold title-font tracking-wider text-black">
+    <h1 class="sm:text-3xl text-2xl font-bold title-font tracking-wider text-gray-100">
       Interests
     </h1>
   </div>
 
-  <section class="text-black body-font tracking-widest">
+  <section class="text-gray-100 body-font tracking-widest">
     <div class="container px-4 sm:px-5 py-14 sm:py-20 mx-auto flex flex-wrap">
       <div class="flex pt-10 pb-20 sm:items-center md:w-2/3 mx-auto">
         <div class="h-full w-6 inset-0 flex items-center justify-center">
-          <div class="h-full w-1 bg-gray-700 pointer-events-none"></div>
+          <div class="h-full w-1 bg-white/25 pointer-events-none"></div>
         </div>
         <div class="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
           <div
@@ -633,7 +607,7 @@
       </div>
       <div class="flex pb-20 sm:items-center md:w-2/3 mx-auto">
         <div class="h-full w-6 inset-0 flex items-center justify-center">
-          <div class="h-full w-1 bg-gray-700 pointer-events-none"></div>
+          <div class="h-full w-1 bg-white/25 pointer-events-none"></div>
         </div>
         <div class="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
           <div
@@ -659,7 +633,7 @@
       </div>
       <div class="flex pb-10 sm:items-center md:w-2/3 mx-auto">
         <div class="h-full w-6 inset-0 flex items-center justify-center">
-          <div class="h-full w-1 bg-gray-700 pointer-events-none"></div>
+          <div class="h-full w-1 bg-white/25 pointer-events-none"></div>
         </div>
         <div class="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
           <div
@@ -686,12 +660,12 @@
   </section>
 
   <div id="ch_in" class="justify-center pt-3 items-center w-full flex mt-10 lg:mt-14">
-    <h1 class="sm:text-3xl text-2xl text-black font-bold title-font tracking-widest">
+    <h1 class="sm:text-3xl text-2xl text-gray-100 font-bold title-font tracking-widest">
       Youtube
     </h1>
   </div>
 
-  <section class="text-black body-font">
+  <section class="text-gray-100 body-font">
     <div class="container mx-auto flex px-4 sm:px-5 py-16 sm:py-24 lg:flex-row flex-col items-center">
       <div class="lg:max-w-lg lg:w-full w-full sm:w-5/6 mb-10 lg:pb-20 lg:mb-0">
         <video class="shadow-2xl shadow-gray-900 w-full h-auto" loop controls>
@@ -745,10 +719,10 @@
   <!-- footer section  -->
 
   <footer class="body-font">
-    <div class="container px-5 py-3 mx-auto flex items-center flex-col border-t-2 border-black">
-      <span class="text-lg lg:text-2xl font-medium text-black tracking-widest">-- kEeP lEaRnInG, kEeP bUiLdInG
+    <div class="container px-5 py-3 mx-auto flex items-center flex-col border-t-2 border-white/20">
+      <span class="text-lg lg:text-2xl font-medium text-gray-100 tracking-widest">-- kEeP lEaRnInG, kEeP bUiLdInG
         --</span>
-      <p class="text-md text-black mt-1 tracking-widest">
+      <p class="text-md text-gray-100 mt-1 tracking-widest">
         Made with ♥ by Ritik.
       </p>
     </div>

@@ -37,11 +37,30 @@ assets/media/    .mp4 files embedded in the skills page
 
 - `index.html` — splash screen; the only page that uses `style.css`. Links to `landing_page.html`.
 - `landing_page.html` — the real homepage: hero, about, **experience** (`#experience`), education, inline contact form, resume download. Sidebar nav on desktop plus a separate top nav on mobile — both must be updated together when adding a section.
-- `skills.html` — technical skill groups, coding profiles, interests, YouTube embeds.
-- `projects.html` — data-driven project grid (see below).
-- `contact.html` — standalone contact page. Currently **orphaned**: the nav link to it is commented out in `skills.html` and no page links to it. Its form duplicates the one in `landing_page.html`.
+- `skills.html` — technical skill groups, coding profiles, interests, YouTube embeds. Instead of a nav bar it has two `fixed` glass buttons: a circular back arrow (top left, to `landing_page.html`) and a Projects pill (top right). They are plain anchors, not a `<nav>`.
+- `projects.html` — data-driven project grid (see below). Uses the same `fixed` glass back arrow as `skills.html`, top left.
+- `contact.html` — standalone contact page. Currently **orphaned**: no page links to it. Its form duplicates the one in `landing_page.html`.
 
 There is no templating or shared include mechanism. The nav, footer, contact form, Google Fonts links and inline `body { font-family: "Edu NSW ACT Foundation" }` block are copy-pasted into each page — a change to any of them must be applied to every page by hand.
+
+## Space theme
+
+Every page is dark, on a shared starfield backdrop.
+
+- `assets/css/space.css` is linked by all five pages and is the single source of the background. It sets `html { background-color: #05070f }`, makes `body` transparent, and paints `assets/images/space-bg.svg` on a fixed `body::before` layer at `z-index: -1`. The fixed pseudo-element is deliberate: `background-attachment: fixed` renders badly on iOS Safari.
+- `assets/images/space-bg.svg` is the backdrop for every page **except the splash** — generated, not downloaded: a 1920x1080 viewBox with 300 stars and two very faint depth gradients. 21 KB raw, and it rasterizes at 1920x1080 in ~10 ms.
+- The splash photograph ships in **two orientations**, used only by `index.html` via `body.splash::before`:
+  - `milky-way.jpg` — 1125x2000, 480 KB, portrait. Default.
+  - `milky-way-wide.jpg` — 2200x1237, 563 KB, the same shot rotated 90 degrees. Served under `@media (orientation: landscape)`.
+  The source is a portrait photo, so a wide viewport cropped it to a narrow vertical strip and looked heavily zoomed. The rotated copy fixes that; the band sweeps horizontally instead. Only the matching media query's image is downloaded — verified, a landscape viewport fetches just the wide one and a portrait viewport just the tall one.
+- Both were generated from the **original 2085x3706 / 2.6 MB source**, not from each other — rotating an already-compressed copy would stack JPEG loss. Commands: `sips --rotate 90` then `--resampleWidth 2200` for the wide one, `--resampleHeight 2000` for the tall one, both `--setProperty formatOptions 55`.
+- Sizing was chosen so `background-size: cover` **downscales at every realistic viewport** (0.32x on a 320px phone up to 0.87x at 1920x1080), which is what keeps it sharp; only a 2560px display upscales, and only by 1.16x. If either image is ever shrunk further, recheck that ratio — upscaling is what made the first attempt look blurry.
+- There was previously a procedural `feTurbulence` nebula in `space-bg.svg`. It was removed. Worth knowing if it is ever reinstated: it cost **405 ms** to rasterize at 1920x1080 versus ~10 ms for the plain starfield, and it was bright enough to require a 0.62 scrim over every page to keep body text readable.
+- **The scrim now applies only to the splash** (`body.splash::after`, `rgba(5,7,15,0.3)`), because the photograph has bright regions that would otherwise swallow the hollow heading. Content pages have no scrim — the plain starfield does not need one.
+- Content surfaces are dark glass (`bg-white/10 backdrop-blur-* border-white/20`) — the hero card and the eight skill cards. The light-coloured skill pills inside them are intentional: they carry the only saturated colour on the page.
+- Two things are light-on-purpose and must stay that way: the form inputs (dark text on light fields) and the project filter buttons (`bg-white text-black`).
+- The splash (`index.html`) carries **Sirius A**: a blue-white core with a layered `box-shadow` glow and a breathing halo, drifting on a 120s alternating cycle. Pure CSS in `style.css` — no images, no JS. It sits at `z-index: 1`, behind the splash text at `z-index: 10`, and is clipped by `overflow: hidden` on `section`. Its glow was dialled back once the photographic backdrop arrived, since it no longer has to carry the sky on its own.
+- **Splash typography** is Orbitron (loaded only by `index.html`), not the site's handwriting face. The `h1` is hollow: `color: transparent` plus `-webkit-text-stroke`, inside an `@supports` guard so browsers without text-stroke get a normal filled heading instead of invisible text. The stroke width is set in **`em`, not `px`** — a fixed pixel stroke closes up the counters at phone sizes and looks like a hairline on desktop. The page-wide white `text-shadow` is nulled on the `h1`, or it ghost-fills the hollow letters.
 
 ## Hero card
 
@@ -55,13 +74,15 @@ The site targets 320px and up; there is no horizontal scroll at any width. When 
 
 - **Gutters** — every container carries `px-4 sm:px-5` (or `px-4 sm:px-6`) so content never touches the screen edge.
 - **Columns** — split at `sm:` for two-up (education cards, form fields, project grid) and `lg:` for three-up or side-by-side media. Avoid bare `w-1/2` / `lg:w-1/3`; write `w-full sm:w-1/2`.
-- **Landing page navs** — the desktop sidebar (`lg:` and up, `w-32` fixed) and the mobile top bar (`lg:hidden`, `h-20`) are separate markup. A new section must be added to **both**. The mobile bar uses `text-[10px] sm:text-sm` with `shrink-0` items, short labels and `overflow-x-auto` as a safety net; the sidebar uses `justify-center gap-4` (the old `-mb-32` negative-margin spacing was removed — don't reintroduce it).
+- **Landing page navs** — the desktop sidebar (`lg:` and up, `w-32` fixed) and the mobile top bar (`lg:hidden`, `h-20`) are separate markup carrying the same six items. A new section must be added to **both**. The sidebar uses `justify-center gap-4` (the old `-mb-32` negative-margin spacing was removed — don't reintroduce it). The top bar is deliberately styled to match it: `bg-black/50 backdrop-blur-md` with white type, not the light bar it used to be. Its icons are sized by class (`h-6 w-6 sm:h-7 sm:w-7`) rather than by each SVG's own `width`/`height`, and it carries no `animate-bounce`, so all six labels share one baseline — the sidebar keeps its original per-icon sizes and its one bouncing icon.
+- **The mobile bar is at capacity.** Six items fit exactly at 320px with nothing to spare (`overflow-x-auto` is there as a safety net, not as normal behaviour). A seventh item, or a longer label than "Experience", will start it scrolling — shorten labels instead.
+- **Clearing the floating back arrow** — on `skills.html` and `projects.html` the back arrow is `fixed` and out of flow, so the first heading needs its own top padding to sit below it. The arrow's bottom edge lands at 60px (mobile) / 72px (desktop); the headings are set so their top clears that with ~12-20px to spare. Shrinking that padding without re-measuring will overlap the button on narrow screens.
 - **Content offset** — pages with the fixed sidebar use `lg:pl-40` on their containers to clear it. Content is therefore centred within the area *beside* the sidebar, not the whole viewport; a measured offset of ~64px at desktop widths is correct, not a bug.
 - **Buttons in a row** — use `flex flex-wrap justify-center gap-4` rather than `ml-4` on the second button, so they wrap instead of overflowing.
 
 Text is centred at section level (headings, hero, about, skill cards). Prose that runs long stays left-aligned — experience bullets and form labels — because centring multi-line body copy hurts readability.
 
-`index.html` is the only page with hand-written CSS. It centres with flexbox on `section`; the `padding-bottom` reserves room for the wave band via the `--wave-height` variable, and the wave tile stays 1000px wide at every breakpoint so the keyframe loop (`background-position-x: 0 -> 1000px`) stays seamless when the height changes.
+`index.html` is the only page with hand-written CSS (`assets/css/style.css`). It centres with flexbox on `section`. Sirius A scales from one custom property, `--core` on `.sirius`; the halo and wrapper are sized as multiples of it, so changing that single value rescales the star coherently. Every animation there is disabled under `prefers-reduced-motion`.
 
 ### Verifying layout changes
 

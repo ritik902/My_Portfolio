@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  /* height of the animated wave band at the bottom of the screen */
-  --wave-height: 200px;
-}
-
 section {
   position: relative;
   display: flex;
@@ -20,44 +15,70 @@ section {
   min-height: 100vh;
   /* svh accounts for mobile browser chrome; ignored by browsers that lack it */
   min-height: 100svh;
-  /* keep the content clear of the wave band and off the screen edges */
-  padding: 24px 16px calc(var(--wave-height) + 24px);
+  padding: 24px 16px;
   overflow: hidden;
-  background: url("../images/landing.svg") center center / cover no-repeat;
+  /* backdrop comes from the shared space.css layer */
+  background: transparent;
 }
 
 section .start {
   position: relative;
-  /* the waves sit at z-index 997-1000 */
-  z-index: 1001;
+  /* sits above the Sirius layer (z-index 1) */
+  z-index: 10;
   width: 100%;
-  max-width: 640px;
+  max-width: 760px;
   text-align: center;
-  letter-spacing: 5px;
+  /* Orbitron is already wide, so it needs far less tracking than the
+     handwriting face this page used before */
+  letter-spacing: 2px;
+  font-family: "Orbitron", "Trebuchet MS", sans-serif;
 }
 
 section .start h1 {
-  font-size: clamp(2.25rem, 9vw, 4.5rem);
-  line-height: 1.15;
+  font-size: clamp(1.7rem, 7.4vw, 4rem);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 3px;
+  /* the page-wide white text-shadow would ghost-fill a hollow letter */
+  text-shadow: none;
+  /* fallback for anything without text-stroke: a normal filled heading */
+  color: #e8f1ff;
+}
+
+/* hollow heading: transparent inside, stroked outline only */
+@supports (-webkit-text-stroke: 1px #fff) {
+  section .start h1 {
+    color: transparent;
+    -webkit-text-stroke-color: #dceaff;
+    /* em, not px: the stroke has to scale with the heading or it closes up
+       the counters at phone sizes and looks hairline on a wide desktop */
+    -webkit-text-stroke-width: 0.048em;
+    /* lifts the outline off the nebula without filling the counters */
+    filter: drop-shadow(0 0 10px rgba(10, 16, 40, 0.85));
+  }
 }
 
 section .start h2 {
-  margin-top: 12px;
-  font-size: clamp(1rem, 4vw, 1.5rem);
+  margin-top: 16px;
+  font-size: clamp(0.8rem, 3.1vw, 1.25rem);
   font-weight: 500;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #bcd4f5;
 }
 
 section .btn {
   margin-top: 40px;
-  padding: 12px 26px;
+  padding: 12px 34px;
   border: 0;
   border-radius: 6px;
   background-color: rgb(49, 3, 92);
   color: aliceblue;
   font: inherit;
-  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: clamp(0.85rem, 2.3vw, 1.05rem);
+  letter-spacing: 4px;
+  text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
@@ -68,75 +89,100 @@ section .btn:focus-visible {
   background-color: rgb(73, 12, 130);
 }
 
-/* ---------- waves ---------- */
+/* ---------- Sirius A ---------- */
 
-section .wave {
+.sirius {
+  --core: clamp(12px, 1.7vw, 22px);
+  /* the wrapper only has to hold the halo */
+  --field: calc(var(--core) * 9);
+
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: var(--wave-height);
-  /* the 1000px tile width must match the keyframe distance below */
-  background: url("../images/wave.png") repeat-x;
-  background-size: 1000px var(--wave-height);
+  z-index: 1;
+  /* lower-left quadrant, clear of the centred text block */
+  left: 17%;
+  top: 70%;
+  width: var(--field);
+  height: var(--field);
+  margin-left: calc(var(--field) / -2);
+  margin-top: calc(var(--field) / -2);
+  pointer-events: none;
+  /* one very slow pass, then back again */
+  animation: sirius-drift 120s ease-in-out infinite alternate;
 }
 
-section .wave.wave1 {
-  animation: animate 4s linear infinite;
-  z-index: 1000;
-  opacity: 1;
-  animation-delay: 0s;
-  bottom: 0;
-}
-section .wave.wave2 {
-  animation: animate2 5s linear infinite;
-  z-index: 999;
-  opacity: 0.5;
-  animation-delay: -5s;
-  bottom: 10px;
-}
-section .wave.wave3 {
-  animation: animate 2s linear infinite;
-  z-index: 998;
-  opacity: 0.2;
-  animation-delay: -2s;
-  bottom: 15px;
-}
-section .wave.wave4 {
-  animation: animate2 7s linear infinite;
-  z-index: 997;
-  opacity: 0.7;
-  animation-delay: -5s;
-  bottom: 20px;
+.sirius-core,
+.sirius-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
 }
 
-@keyframes animate {
-  0% {
-    background-position-x: 0;
+/* Sirius A is an A1V star: white with a blue cast */
+.sirius-core {
+  width: var(--core);
+  height: var(--core);
+  margin-left: calc(var(--core) / -2);
+  margin-top: calc(var(--core) / -2);
+  background: radial-gradient(circle,
+      #ffffff 0%,
+      #f2f8ff 32%,
+      #bcdaff 66%,
+      rgba(165, 205, 255, 0) 100%);
+  box-shadow:
+    0 0 16px 5px rgba(190, 222, 255, 0.42),
+    0 0 44px 14px rgba(130, 182, 255, 0.2),
+    0 0 100px 32px rgba(110, 160, 255, 0.09);
+  animation: sirius-twinkle 6s ease-in-out infinite;
+}
+
+.sirius-glow {
+  width: calc(var(--core) * 8);
+  height: calc(var(--core) * 8);
+  margin-left: calc(var(--core) * -4);
+  margin-top: calc(var(--core) * -4);
+  background: radial-gradient(circle,
+      rgba(180, 216, 255, 0.2) 0%,
+      rgba(130, 180, 255, 0.07) 40%,
+      rgba(120, 172, 255, 0) 72%);
+  animation: sirius-breathe 8s ease-in-out infinite;
+}
+
+@keyframes sirius-drift {
+  from {
+    transform: translate3d(0, 0, 0);
   }
+  to {
+    transform: translate3d(4vw, -3vh, 0);
+  }
+}
+
+@keyframes sirius-twinkle {
+  0%,
   100% {
-    background-position-x: 1000px;
+    opacity: 1;
   }
-}
-@keyframes animate2 {
-  0% {
-    background-position-x: 0;
-  }
-  100% {
-    background-position-x: 1000px;
+  50% {
+    opacity: 0.88;
   }
 }
 
-/* Shorter wave band on small screens so the text keeps room to breathe.
-   The 1000px tile width is unchanged, so the animation still loops seamlessly. */
-@media (max-width: 640px) {
-  :root {
-    --wave-height: 120px;
+@keyframes sirius-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.84;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  section .wave {
+  .sirius,
+  .sirius-core,
+  .sirius-glow {
     animation: none;
   }
 }

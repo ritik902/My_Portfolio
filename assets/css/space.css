@@ -1,0 +1,51 @@
+/* Shared space backdrop — linked by every page.
+   The starfield is painted on a fixed ::before layer rather than with
+   background-attachment: fixed, which iOS Safari handles badly. */
+
+html {
+  background-color: #05070f;
+}
+
+body {
+  background: transparent;
+  color: #e6e8f0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("../images/space-bg.svg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* The splash alone carries the Milky Way photograph. The source is a portrait
+   shot, so a wide viewport would crop it to a narrow strip and look zoomed —
+   landscape viewports get a rotated copy instead. Only the matching rule's
+   image is ever downloaded. */
+body.splash::before {
+  background-image: url("../images/milky-way.jpg");
+}
+
+@media (orientation: landscape) {
+  body.splash::before {
+    background-image: url("../images/milky-way-wide.jpg");
+  }
+}
+
+/* Only the splash needs a scrim: the photograph has bright regions that would
+   otherwise swallow the hollow heading. ::after shares the -1 layer with
+   ::before and, being later in tree order, paints on top of it but still
+   behind all content. */
+body.splash::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(5, 7, 15, 0.3);
+  pointer-events: none;
+}
