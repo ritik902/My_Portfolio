@@ -67,63 +67,158 @@ section .start h2 {
   color: #bcd4f5;
 }
 
+/* Launch button: a swept spacecraft hull, nose to the right, notched tail.
+   Both layers share one clip-path — the outer element is the glowing hull
+   edge, the inner one the dark cockpit it frames. */
 section .btn {
-  margin-top: 40px;
-  padding: 12px 34px;
-  border: 0;
-  border-radius: 6px;
-  background-color: rgb(49, 3, 92);
-  color: aliceblue;
+  --hull: polygon(0 0, 78% 0, 100% 50%, 78% 100%, 0 100%, 9% 50%);
+  display: inline-block;
+  margin-top: 44px;
+  /* this 2px is what shows as the lit edge of the hull */
+  padding: 2px;
+  clip-path: var(--hull);
+  background: linear-gradient(100deg, #8fe6ff 0%, #bcd8ff 45%, #4f8dff 100%);
+  text-decoration: none;
+  cursor: pointer;
+  /* drop-shadow is applied after the clip, so the halo follows the hull
+     outline; box-shadow would be clipped away with the corners */
+  filter: drop-shadow(0 0 9px rgba(120, 195, 255, 0.5));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+section .btn-face {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: var(--hull);
+  /* asymmetric: the nose cone eats more room than the tail notch */
+  padding: 13px 46px 13px 40px;
+  background: linear-gradient(150deg, #060d22 0%, #101d42 55%, #060d22 100%);
+  overflow: hidden;
+}
+
+/* a single lit panel line along the spine — cheap, and it stops the hull
+   reading as one flat slab */
+section .btn-face::after {
+  content: "";
+  position: absolute;
+  left: 13%;
+  right: 17%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(to right,
+      rgba(170, 225, 255, 0) 0%,
+      rgba(200, 238, 255, 0.75) 50%,
+      rgba(170, 225, 255, 0) 100%);
+  pointer-events: none;
+}
+
+section .btn-text {
+  position: relative;
+  z-index: 2;
+  color: #e8f4ff;
   font: inherit;
   font-weight: 700;
   font-size: clamp(0.85rem, 2.3vw, 1.05rem);
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  /* overrides the page-wide white text-shadow, which muddies this */
+  text-shadow: 0 0 12px rgba(130, 200, 255, 0.6);
 }
 
+/* Engine wash at the tail. It burns through the back of the ship rather than
+   trailing behind it because clip-path clips descendants too — anything
+   placed outside the hull would simply be cut away. */
+section .btn-thrust {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  background: linear-gradient(to right,
+      rgba(198, 240, 255, 0.95) 0%,
+      rgba(125, 205, 255, 0.5) 30%,
+      rgba(110, 180, 255, 0) 100%);
+  animation: thrust 1.9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes thrust {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* nudges forward rather than up — it is pointing somewhere */
 section .btn:hover,
 section .btn:focus-visible {
-  transform: translateY(-2px);
-  background-color: rgb(73, 12, 130);
+  transform: translateX(3px);
+  filter: drop-shadow(0 0 16px rgba(140, 210, 255, 0.85));
 }
 
-/* ---------- Sirius A ---------- */
+section .btn:hover .btn-thrust,
+section .btn:focus-visible .btn-thrust {
+  animation-duration: 0.7s;
+}
 
-.sirius {
+/* ---------- stars ---------- */
+
+/* Shared skeleton for both stars. Each one scales from a single custom
+   property, --core; the halo and the wrapper are multiples of it, so setting
+   --core on a modifier rescales that star coherently. */
+.star {
   --core: clamp(12px, 1.7vw, 22px);
   /* the wrapper only has to hold the halo */
   --field: calc(var(--core) * 9);
 
   position: absolute;
   z-index: 1;
-  /* lower-left quadrant, clear of the centred text block */
-  left: 17%;
-  top: 70%;
   width: var(--field);
   height: var(--field);
   margin-left: calc(var(--field) / -2);
   margin-top: calc(var(--field) / -2);
   pointer-events: none;
-  /* one very slow pass, then back again */
-  animation: sirius-drift 120s ease-in-out infinite alternate;
 }
 
-.sirius-core,
-.sirius-glow {
+.star-core,
+.star-glow {
   position: absolute;
   left: 50%;
   top: 50%;
   border-radius: 50%;
 }
 
-/* Sirius A is an A1V star: white with a blue cast */
-.sirius-core {
+.star-core {
   width: var(--core);
   height: var(--core);
   margin-left: calc(var(--core) / -2);
   margin-top: calc(var(--core) / -2);
+  animation: star-twinkle 6s ease-in-out infinite;
+}
+
+.star-glow {
+  width: calc(var(--core) * 8);
+  height: calc(var(--core) * 8);
+  margin-left: calc(var(--core) * -4);
+  margin-top: calc(var(--core) * -4);
+  animation: star-breathe 8s ease-in-out infinite;
+}
+
+/* Sirius A is an A1V star: white with a blue cast. Lower-left quadrant,
+   clear of the centred text block. */
+.sirius {
+  left: 17%;
+  top: 70%;
+  /* one very slow pass, then back again */
+  animation: sirius-drift 120s ease-in-out infinite alternate;
+}
+
+.sirius .star-core {
   background: radial-gradient(circle,
       #ffffff 0%,
       #f2f8ff 32%,
@@ -133,19 +228,42 @@ section .btn:focus-visible {
     0 0 16px 5px rgba(190, 222, 255, 0.42),
     0 0 44px 14px rgba(130, 182, 255, 0.2),
     0 0 100px 32px rgba(110, 160, 255, 0.09);
-  animation: sirius-twinkle 6s ease-in-out infinite;
 }
 
-.sirius-glow {
-  width: calc(var(--core) * 8);
-  height: calc(var(--core) * 8);
-  margin-left: calc(var(--core) * -4);
-  margin-top: calc(var(--core) * -4);
+.sirius .star-glow {
   background: radial-gradient(circle,
       rgba(180, 216, 255, 0.2) 0%,
       rgba(130, 180, 255, 0.07) 40%,
       rgba(120, 172, 255, 0) 72%);
-  animation: sirius-breathe 8s ease-in-out infinite;
+}
+
+/* The Sun: larger core, warm orange-red, lower right and set a little below
+   Sirius. Its own drift keyframes and a slower cycle keep the two from
+   sliding across the sky in lockstep. */
+.sun {
+  --core: clamp(20px, 2.9vw, 38px);
+  left: 82%;
+  top: 78%;
+  animation: sun-drift 165s ease-in-out infinite alternate;
+}
+
+.sun .star-core {
+  background: radial-gradient(circle,
+      #fff6ea 0%,
+      #ffd79a 28%,
+      #ff9f4c 60%,
+      rgba(255, 106, 40, 0) 100%);
+  box-shadow:
+    0 0 20px 7px rgba(255, 176, 96, 0.4),
+    0 0 56px 18px rgba(255, 128, 56, 0.19),
+    0 0 124px 40px rgba(255, 96, 40, 0.085);
+}
+
+.sun .star-glow {
+  background: radial-gradient(circle,
+      rgba(255, 174, 96, 0.19) 0%,
+      rgba(255, 126, 54, 0.07) 40%,
+      rgba(255, 112, 46, 0) 72%);
 }
 
 @keyframes sirius-drift {
@@ -157,7 +275,16 @@ section .btn:focus-visible {
   }
 }
 
-@keyframes sirius-twinkle {
+@keyframes sun-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-3vw, -2.2vh, 0);
+  }
+}
+
+@keyframes star-twinkle {
   0%,
   100% {
     opacity: 1;
@@ -167,7 +294,7 @@ section .btn:focus-visible {
   }
 }
 
-@keyframes sirius-breathe {
+@keyframes star-breathe {
   0%,
   100% {
     transform: scale(1);
@@ -180,9 +307,201 @@ section .btn:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sirius,
-  .sirius-core,
-  .sirius-glow {
+  .star,
+  .star-core,
+  .star-glow,
+  section .btn-thrust {
     animation: none;
+  }
+}
+
+
+/* ---------- neutron-star blast (Launch button) ---------- */
+
+/* Everything is light — gradients and shadows, no images and no canvas.
+   Sizes are in vmax so the shockwave clears the screen at any aspect ratio.
+   --bx/--by are written on <html> at click time: the blast starts at the
+   button, not at the centre of the viewport. */
+
+.blast {
+  position: fixed;
+  left: var(--bx, 50%);
+  top: var(--by, 50%);
+  z-index: 60;
+  pointer-events: none;
+  /* nothing is painted until the button is actually pressed */
+  visibility: hidden;
+}
+
+.blast.fire {
+  visibility: visible;
+}
+
+.blast-core,
+.blast-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+}
+
+.blast-core {
+  transform: translate(-50%, -50%) scale(0);
+  will-change: transform, opacity;
+}
+
+.blast-ring {
+  /* these animate width/height, so promoting transform would buy nothing */
+  will-change: opacity;
+}
+
+/* the merger itself: a neutron star is hot enough to read blue-white */
+.blast-core {
+  width: 9vmax;
+  height: 9vmax;
+  background: radial-gradient(circle,
+      #ffffff 0%,
+      #eaf4ff 30%,
+      #a9d4ff 55%,
+      rgba(120, 180, 255, 0) 70%);
+}
+
+/* The shockwave. This one animates width/height rather than transform:
+   scale() on purpose — scaling multiplies the border thickness too, which
+   turns a hairline shell into a fat slab by the time it crosses the screen.
+   Growing the box keeps the front a constant 2px, which is what makes it
+   read as a shock front instead of a spreading blob. */
+.blast-ring {
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(220, 238, 255, 0.95);
+  /* A fixed 12px blur, not the 4vmax one this used to carry. Blur radius is
+     in device pixels, so a vmax blur on a box growing to 200vmax means
+     re-rasterising an ~80px-soft edge around a 4000px circle every frame.
+     The inset shadow was worse and bought nothing visible. */
+  box-shadow: 0 0 12px rgba(150, 198, 255, 0.45);
+}
+
+.blast.fire .blast-core {
+  animation: blast-core 820ms cubic-bezier(0.16, 0.8, 0.3, 1) forwards;
+}
+
+/* The rings are the only part of the blast that still costs layout, so both
+   are timed to finish (500ms, 590ms for the trailing one) before .flash
+   reaches full opacity at 480ms and hides them outright — past that point
+   the work would be invisible as well as expensive. */
+.blast.fire .blast-ring {
+  animation: blast-ring 500ms cubic-bezier(0.26, 0.5, 0.3, 1) forwards;
+}
+
+/* second, wider front a beat later — one ring alone looks like a smoke puff */
+.blast.fire .blast-ring-2 {
+  animation: blast-ring 500ms cubic-bezier(0.22, 0.45, 0.28, 1) 90ms forwards;
+  border-color: rgba(150, 200, 255, 0.5);
+}
+
+@keyframes blast-core {
+  0% {
+    transform: translate(-50%, -50%) scale(0.06);
+    opacity: 1;
+  }
+  18% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(5.5);
+    opacity: 0;
+  }
+}
+
+@keyframes blast-ring {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-width: 3px;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    /* 200vmax clears the diagonal of any aspect ratio */
+    width: 200vmax;
+    height: 200vmax;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* Full-screen wash. It peaks bright, then brightness() takes it down to
+   near-black, so the dark landing page underneath arrives seamlessly
+   instead of cutting from white to black. */
+/* Full-screen wash, then a blackout over the top of it.
+   These are two elements animating nothing but opacity, on purpose. The
+   earlier version was one element that animated `filter: brightness()` down
+   to near-black — filter cannot be composited, so every frame of the last
+   430ms repainted the whole viewport, which is precisely when the browser
+   is also busy starting the next page. Opacity composites on the GPU. */
+.flash {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+  background: radial-gradient(circle at var(--bx, 50%) var(--by, 50%),
+      #f2f8ff 0%,
+      #c3ddff 35%,
+      #6fa4ff 70%,
+      #1b2a55 100%);
+}
+
+.flash.fire {
+  animation: blast-flash 480ms ease-in forwards;
+}
+
+@keyframes blast-flash {
+  0% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* matches the site background, so the handover to the next page is invisible */
+.blackout {
+  position: fixed;
+  inset: 0;
+  z-index: 71;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+  background: #05070f;
+}
+
+.blackout.fire {
+  animation: blast-dark 420ms ease-in 480ms forwards;
+}
+
+@keyframes blast-dark {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blast,
+  .flash,
+  .blackout {
+    display: none;
   }
 }

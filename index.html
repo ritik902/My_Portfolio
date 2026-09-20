@@ -16,6 +16,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/space.css" />
   <link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+  <link rel="prefetch" href="landing_page.html" />
   <style>
     body {
       font-family: "Edu NSW ACT Foundation", cursive;
@@ -29,16 +30,104 @@
     <div class="start">
       <h1>Ritik Sharma</h1>
       <h2>AI/ML Engineer</h2>
-      <a href="landing_page.html">
-        <button class="btn">Launch</button>
+      <a class="btn" id="launch" href="landing_page.html">
+        <span class="btn-face">
+          <span class="btn-thrust" aria-hidden="true"></span>
+          <span class="btn-text">Launch</span>
+        </span>
       </a>
     </div>
-    <!-- Sirius A: slow-drifting bright star -->
-    <div class="sirius" aria-hidden="true">
-      <span class="sirius-glow"></span>
-      <span class="sirius-core"></span>
+    <!-- Sirius A: slow-drifting blue-white star, lower left -->
+    <div class="star sirius" aria-hidden="true">
+      <span class="star-glow"></span>
+      <span class="star-core"></span>
+    </div>
+    <!-- our Sun: larger and warmer, lower right and a little below Sirius -->
+    <div class="star sun" aria-hidden="true">
+      <span class="star-glow"></span>
+      <span class="star-core"></span>
     </div>
   </section>
+
+  <!-- Neutron-star blast: fires on Launch, then carries into the next page.
+       Kept outside <section>, which is overflow:hidden and would clip it. -->
+  <div class="blast" aria-hidden="true">
+    <span class="blast-ring blast-ring-2"></span>
+    <span class="blast-ring"></span>
+    <span class="blast-core"></span>
+  </div>
+  <div class="flash" aria-hidden="true"></div>
+  <div class="blackout" aria-hidden="true"></div>
+
+  <script>
+    (function () {
+      const launch = document.getElementById("launch");
+      const blast = document.querySelector(".blast");
+      const flash = document.querySelector(".flash");
+      const blackout = document.querySelector(".blackout");
+      const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let gone = false;
+      let timer = null;
+
+      const go = function () {
+        if (gone) return;
+        gone = true;
+        window.location.href = launch.href;
+      };
+
+      // Reset whenever the page is shown, including a bfcache restore after
+      // the browser Back button. Two separate things have to be undone:
+      //
+      //  1. The overlays. .flash and .blackout finish with fill "forwards",
+      //     so the page is frozen under an opaque layer; bfcache restores
+      //     that DOM verbatim and the splash looks blank until a refresh.
+      //
+      //  2. The fallback timer. A bfcache'd page is frozen, not destroyed —
+      //     its pending timers PAUSE and resume on restore. Clearing `gone`
+      //     without also clearing the timer re-arms a stale go(), which then
+      //     fires a second later and throws the visitor forward to the
+      //     landing page again, so Back appears to do nothing at all.
+      //
+      // pageshow is the only event a bfcache restore fires — no "load", no
+      // "DOMContentLoaded" — so this has to live here.
+      window.addEventListener("pageshow", function () {
+        if (timer !== null) {
+          clearTimeout(timer);
+          timer = null;
+        }
+        blackout.removeEventListener("animationend", go);
+        gone = false;
+        blast.classList.remove("fire");
+        flash.classList.remove("fire");
+        blackout.classList.remove("fire");
+        launch.removeAttribute("aria-disabled");
+      });
+
+      launch.addEventListener("click", function (e) {
+        // let ctrl/cmd/middle-click open in a new tab as usual, and skip the
+        // whole effect for anyone who asked for reduced motion
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        if (still.matches) return;
+        e.preventDefault();
+
+        // detonate at the button's centre rather than the middle of the screen
+        const r = launch.getBoundingClientRect();
+        const root = document.documentElement;
+        root.style.setProperty("--bx", r.left + r.width / 2 + "px");
+        root.style.setProperty("--by", r.top + r.height / 2 + "px");
+
+        blast.classList.add("fire");
+        flash.classList.add("fire");
+        blackout.classList.add("fire");
+        launch.setAttribute("aria-disabled", "true");
+
+        // .blackout finishes last, so it owns the handover; the timer is a
+        // fallback for when animationend never arrives (background tab)
+        blackout.addEventListener("animationend", go, { once: true });
+        timer = setTimeout(go, 1600);
+      });
+    })();
+  </script>
 </body>
 
 </html>

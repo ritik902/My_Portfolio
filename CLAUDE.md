@@ -59,12 +59,56 @@ Every page is dark, on a shared starfield backdrop.
 - **The scrim now applies only to the splash** (`body.splash::after`, `rgba(5,7,15,0.3)`), because the photograph has bright regions that would otherwise swallow the hollow heading. Content pages have no scrim — the plain starfield does not need one.
 - Content surfaces are dark glass (`bg-white/10 backdrop-blur-* border-white/20`) — the hero card and the eight skill cards. The light-coloured skill pills inside them are intentional: they carry the only saturated colour on the page.
 - Two things are light-on-purpose and must stay that way: the form inputs (dark text on light fields) and the project filter buttons (`bg-white text-black`).
-- The splash (`index.html`) carries **Sirius A**: a blue-white core with a layered `box-shadow` glow and a breathing halo, drifting on a 120s alternating cycle. Pure CSS in `style.css` — no images, no JS. It sits at `z-index: 1`, behind the splash text at `z-index: 10`, and is clipped by `overflow: hidden` on `section`. Its glow was dialled back once the photographic backdrop arrived, since it no longer has to carry the sky on its own.
+- The splash (`index.html`) carries **two stars**, pure CSS in `style.css` — no images, no JS. Both sit at `z-index: 1`, behind the splash text at `z-index: 10`, and are clipped by `overflow: hidden` on `section`.
+  - **Sirius A** (`.star.sirius`) — blue-white, lower left at `17% / 70%`, 120s drift.
+  - **The Sun** (`.star.sun`) — warm orange-red, lower right at `82% / 78%`, so it sits below Sirius; 165s drift in its own direction so the two do not slide across the sky in lockstep.
+
+  `.star` is the shared skeleton: positioning, the core and the halo, and the twinkle/breathe animations. Each star scales from **one custom property, `--core`** — the halo and the wrapper are multiples of it, so a modifier that sets `--core` rescales that star coherently. The Sun sets `1.35x` Sirius's value, which holds at every width because both are `clamp()`s of `vw`. A modifier must come *after* `.star` in the file: same specificity, so source order decides which `--core` wins. Sirius's glow was dialled back once the photographic backdrop arrived, since it no longer has to carry the sky on its own.
 - **Splash typography** is Orbitron (loaded only by `index.html`), not the site's handwriting face. The `h1` is hollow: `color: transparent` plus `-webkit-text-stroke`, inside an `@supports` guard so browsers without text-stroke get a normal filled heading instead of invisible text. The stroke width is set in **`em`, not `px`** — a fixed pixel stroke closes up the counters at phone sizes and looks like a hairline on desktop. The page-wide white `text-shadow` is nulled on the `h1`, or it ghost-fills the hollow letters.
+
+## Launch button blast
+
+Pressing **Launch** on the splash sets off a neutron-star blast that doubles as the page transition into `landing_page.html`. Pure CSS and ~30 lines of inline JS — no images, no canvas, no library.
+
+Layers, all in `style.css`: `.blast-core` (the flash), two `.blast-ring` shock fronts, and `.flash` (a full-screen wash). The JS writes `--bx`/`--by` on `<html>` at click time so the blast originates at the button rather than the centre of the screen.
+
+Four things are easy to break:
+
+- **The `.blast`/`.flash` divs live outside `<section>`.** `section` is `overflow: hidden`, so anything inside it gets clipped part-way through the expansion.
+- **The rings animate `width`/`height`, not `transform: scale()`** — deliberately, against the usual advice. `scale()` multiplies the border thickness too, so a 2px shell became a ~7vmax slab by the time it crossed the screen and read as a spreading blob. Growing the box keeps the front a constant 2px. It costs layout on two elements for 800ms, which is the right trade here.
+- **`.flash` ends on `filter: brightness(0.04)`, not on white.** It peaks bright, then darkens to near-black before navigating, so arriving at the dark landing page is seamless instead of a white-to-black cut.
+- **Navigation is driven by `animationend` on `.flash`, with a 1600 ms `setTimeout` fallback** — `animationend` never fires in a background tab, and without the fallback the button would simply stop working. A `gone` flag stops the two paths from navigating twice.
+
+The handler bails out early — letting the plain link work — for modified clicks (cmd/ctrl/shift/middle, so "open in new tab" still works) and for `prefers-reduced-motion`, where the CSS also sets `display: none` on both layers.
+
+**Everything animates `opacity` or `transform`, except the rings.** That is deliberate. An earlier version faded out by animating `filter: brightness()` on the full-screen `.flash`; `filter` cannot be composited, so the last 430 ms repainted the whole viewport every frame — exactly while the browser was starting the next page, and it was visibly janky. The fade is now two stacked elements (`.flash` bright, `.blackout` solid `#05070f`) that animate opacity only. **Do not reintroduce an animated `filter`, `box-shadow` or `background` here.** `.blackout` matches the site background so the handover to the next page is invisible, and because it finishes last it — not `.flash` — owns the `animationend` that triggers navigation.
+
+The rings are the one exception: they animate `width`/`height`, which costs layout. They are capped at 500 ms (590 ms for the trailing one) so they finish before `.flash` reaches full opacity at 480 ms and hides them — past that point the work is invisible as well as expensive. Their glow is a fixed `12px` blur, not the `4vmax` one they used to carry: blur radius is in device pixels, so a vmax blur on a box growing to 200vmax means re-rasterising an ~80px-soft edge around a 4000px circle every frame.
+
+**A bfcache restore has to undo two things, or Back breaks.** The overlays finish with fill `forwards`, so the page is left frozen under an opaque layer; the browser restores that DOM verbatim and the splash looks blank until a refresh. But a bfcache'd page is *frozen, not destroyed* — **its pending timers pause and resume on restore**. Clearing the `gone` re-entry flag without also calling `clearTimeout` on the fallback timer re-arms a stale `go()`, which fires about a second after the restore and throws the visitor forward to the landing page again, so Back appears to do nothing at all. That was a real regression, introduced by a first pass at this fix that reset the flag alone. The handler must clear the timer, detach the `animationend` listener, drop the `fire` classes and reset `gone`.
+
+A bfcache restore fires **no `load` and no `DOMContentLoaded`** — `pageshow` is the only hook, so the reset has to live there.
+
+## Launch button
+
+The button is a spacecraft hull, not a rectangle: nose to the right, notched tail, engine burn at the back.
+
+Both layers share one `--hull` `clip-path` — `.btn` is the lit hull edge (a gradient showing through 2px of padding) and `.btn-face` is the dark cockpit it frames. Consequences of that clip worth knowing before editing:
+
+- **`clip-path` clips descendants and pseudo-elements too.** The thruster therefore burns through the *inside* of the tail; anything positioned outside the hull to make an exhaust trail is simply cut away.
+- **Glow must be `filter: drop-shadow`, not `box-shadow`.** `filter` is applied after the clip so the halo follows the hull outline; a `box-shadow` is clipped off with the corners.
+- The layout is `flex` with asymmetric padding (`46px` right, `40px` left) because the nose cone eats more interior room than the tail notch. Centring still measures 0.0px at 320–1440px; re-measure if the polygon changes.
+- `.btn-text` sets its own `text-shadow`, overriding the page-wide white one that otherwise muddies it.
+
+The button is an `<a class="btn">`, not a `<button>` inside an `<a>`: that nesting was invalid HTML. `.btn` therefore needs `display: inline-block` and `text-decoration: none`. `index.html` also carries `<link rel="prefetch" href="landing_page.html">` so the next page is cached by the time the blast finishes.
 
 ## Hero card
 
 The landing page hero is a single centred card: circular avatar in a gradient ring, location pill, name, role, three specialism pills, one-line blurb, and a single "Download Resume" call to action. There is deliberately no Projects button — the projects page is reached through the nav.
+
+The card is glass, and **it deliberately carries no `backdrop-blur`.** That is not an oversight. The backdrop is a starfield of roughly 1px points, and a Gaussian blur spreads one such point over its whole kernel: measured through the card, the brightest star reads 143 with no blur, 49 at 1px, 40 at 1.5px and 24 — i.e. gone — at the `backdrop-blur-lg` (16px) this used to have. An empty strip inside the card measured a standard deviation of 0.23, mathematically flat. Any frosted-glass blur here erases the sky it is supposed to be showing, so "blurry" and "see-through" cannot both be had over a starfield.
+
+What sells the glass instead is the **rim and the sheen**, not a blur and not the fill: `border-white/30`, `ring-1 ring-inset ring-white/15`, and a diagonal `bg-gradient-to-br from-white/[0.10] via-white/[0.03] to-white/[0.08]` reading as light catching a pane. Drop the border or the ring and the card dissolves into the page; raise the fill much past `white/10` and it goes back to looking like a solid slab. Current state measures 142 brightest / 1.49 stddev through the card, against 24 / 0.23 before.
 
 The avatar uses `object-cover object-top` because `assets/images/profile.jpg` is a 1180x2096 portrait; top-anchoring keeps the face in frame. If the photo is swapped for a square or landscape headshot, `object-center` will usually frame better.
 
