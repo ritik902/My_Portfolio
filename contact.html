@@ -43,7 +43,13 @@
   <!-- contact section  -->
 
   <section id="contact" class="text-gray-100 body-font tracking-widest">
-    <form name="submit-to-google-sheet">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <!-- Netlify needs form-name in the POST body to route the submission -->
+      <input type="hidden" name="form-name" value="contact" />
+      <!-- honeypot: hidden from people, filled in by bots, so Netlify drops it -->
+      <p style="display: none">
+        <label>Leave this field empty: <input name="bot-field" /></label>
+      </p>
       <div class="container px-4 sm:px-5 pt-10 sm:pt-16 mx-auto">
         <div class="flex flex-col text-center w-full mb-12">
           <h1 class="sm:text-3xl text-2xl font-medium title-font">
@@ -123,24 +129,40 @@
   </footer>
 
   <script>
-    //  message sent to google sheets
-
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbwra_spVIgP1Q0cvliahSfbrWXhxPWF_4mb8tYTiXk-ct-yCTXSbXErMIjk_950Z6OKYA/exec";
-    const form = document.forms["submit-to-google-sheet"];
+    // Submits to Netlify Forms. The plain HTML form already works on its own
+    // (a normal POST lands on Netlify's confirmation page) — this only keeps
+    // the visitor on the page and shows the status inline.
+    const form = document.forms["contact"];
     const msg = document.getElementById("msg");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then((response) => {
-          msg.innerHTML = "Message Sent Successfully!";
-          setTimeout(function () {
-            msg.innerHTML = "";
-          }, 5000);
-          form.reset();
-        })
-        .catch((error) => console.error("Error!", error.message));
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      msg.className = "font-bold text-gray-300";
+      msg.textContent = "Sending...";
+
+      try {
+        // Netlify accepts url-encoded form posts at any static path
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+        // fetch only rejects on network failure, never on a 4xx/5xx — without
+        // this check a rejected submission reports itself as a success
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        msg.className = "font-bold text-green-500";
+        msg.textContent = "Message sent — thanks! I'll get back to you soon.";
+        form.reset();
+      } catch (err) {
+        msg.className = "font-bold text-red-400";
+        msg.innerHTML =
+          'Could not send. Please email <a class="underline" href="mailto:ritik004sharma@gmail.com">ritik004sharma@gmail.com</a>.';
+        console.error("Contact form:", err);
+      } finally {
+        button.disabled = false;
+      }
     });
   </script>
 </body>

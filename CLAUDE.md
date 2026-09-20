@@ -108,6 +108,21 @@ This page carries personal/open-source work only; employer projects live in the 
 
 ## Contact form
 
-Both `landing_page.html` and `contact.html` POST their `FormData` to the same Google Apps Script endpoint (`scriptURL` in the inline script at the bottom of each page), which appends rows to a Google Sheet. The script looks the form up via `document.forms["submit-to-google-sheet"]`, so the `<form name="submit-to-google-sheet">` attribute and the `id="msg"` status span must be preserved. If the endpoint changes, update it in both files.
+Both `landing_page.html` and `contact.html` submit to **Netlify Forms**. There is no backend and no third-party endpoint — Netlify detects the form at deploy time by scanning the deployed HTML.
+
+Four things are load-bearing and must survive any edit to either form:
+
+- `data-netlify="true"` on the `<form>` — this is what makes Netlify register it at all.
+- `<input type="hidden" name="form-name" value="contact">` inside the form — Netlify routes the submission by this, and an AJAX post without it is rejected.
+- `netlify-honeypot="bot-field"` plus the matching `<p style="display: none">` wrapping `<input name="bot-field">`. The wrapper is styled **inline, not with Tailwind's `hidden` class** — Tailwind arrives from the play CDN asynchronously, so a class-based rule would let the decoy field flash visible on a slow connection.
+- The `id="msg"` status span.
+
+Both forms share `name="contact"`, so Netlify merges them into one submission inbox. Renaming one splits the inbox in two.
+
+The inline script is progressive enhancement only: it intercepts submit, posts url-encoded to `/`, and writes the status inline. With JS disabled the plain HTML form still posts normally and lands on Netlify's own confirmation page.
+
+It **must** keep checking `res.ok`. `fetch` rejects only on network failure, never on a 4xx/5xx, and the previous Google Apps Script version omitted that check — when that endpoint started returning 403, the form went on reporting "Message Sent Successfully!" and messages were lost silently for an unknown stretch of time. On failure the form is deliberately *not* reset, so the visitor does not lose what they typed, and the error offers a `mailto:` fallback.
+
+Netlify's free tier allows 100 submissions/month. Submissions are visible under Forms in the Netlify dashboard; email notification is configured there, not in this repo.
 
 The phone number in the resume is deliberately kept off the HTML pages; it is only in the downloadable PDF.

@@ -182,7 +182,7 @@
           <!-- profile photo -->
           <div
             class="mx-auto mb-7 h-36 w-36 sm:h-44 sm:w-44 lg:h-52 lg:w-52 rounded-full p-[3px] bg-white/25 shadow-2xl shadow-black/70">
-            <img src="assets/images/profile.png" alt="Portrait of Ritik Sharma"
+            <img src="assets/images/profile1.jpg" alt="Portrait of Ritik Sharma"
               class="h-full w-full rounded-full object-cover object-top border-4 border-white/10" />
           </div>
 
@@ -400,7 +400,7 @@
             <img alt="Vidya College of Engineering"
               class="w-32 h-32 mb-8 object-fill object-center rounded-full inline-block border-2 border-white bg-gray-100 shadow-lg shadow-white"
               src="assets/icons/bank.svg" />
-            <p class="leading-relaxed">Vidya College of Engineering (AKTU), Uttar Pradesh</p>
+            <p class="leading-relaxed">VCE, AKTU</p>
             <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
             <h2 class="text-white font-medium title-font tracking-wider">
               B.Tech, Computer Science Engineering (2023)
@@ -415,7 +415,13 @@
   <!-- contact section  -->
 
   <section id="contact" class="text-white body-font tracking-widest">
-    <form name="submit-to-google-sheet">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <!-- Netlify needs form-name in the POST body to route the submission -->
+      <input type="hidden" name="form-name" value="contact" />
+      <!-- honeypot: hidden from people, filled in by bots, so Netlify drops it -->
+      <p style="display: none">
+        <label>Leave this field empty: <input name="bot-field" /></label>
+      </p>
       <div class="container px-4 sm:px-5 py-16 sm:py-24 mx-auto lg:pl-40">
         <div class="flex flex-col text-center w-full mb-12">
           <h1 class="sm:text-3xl text-2xl font-medium title-font">
@@ -542,24 +548,40 @@
   </script>
 
   <script>
-    //  message sent to google sheets
-
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbwra_spVIgP1Q0cvliahSfbrWXhxPWF_4mb8tYTiXk-ct-yCTXSbXErMIjk_950Z6OKYA/exec";
-    const form = document.forms["submit-to-google-sheet"];
+    // Submits to Netlify Forms. The plain HTML form already works on its own
+    // (a normal POST lands on Netlify's confirmation page) — this only keeps
+    // the visitor on the page and shows the status inline.
+    const form = document.forms["contact"];
     const msg = document.getElementById("msg");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then((response) => {
-          msg.innerHTML = "Message Sent Successfully!";
-          setTimeout(function () {
-            msg.innerHTML = "";
-          }, 5000);
-          form.reset();
-        })
-        .catch((error) => console.error("Error!", error.message));
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      msg.className = "font-bold text-gray-300";
+      msg.textContent = "Sending...";
+
+      try {
+        // Netlify accepts url-encoded form posts at any static path
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+        // fetch only rejects on network failure, never on a 4xx/5xx — without
+        // this check a rejected submission reports itself as a success
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        msg.className = "font-bold text-green-500";
+        msg.textContent = "Message sent — thanks! I'll get back to you soon.";
+        form.reset();
+      } catch (err) {
+        msg.className = "font-bold text-red-400";
+        msg.innerHTML =
+          'Could not send. Please email <a class="underline" href="mailto:ritik004sharma@gmail.com">ritik004sharma@gmail.com</a>.';
+        console.error("Contact form:", err);
+      } finally {
+        button.disabled = false;
+      }
     });
   </script>
 </body>
